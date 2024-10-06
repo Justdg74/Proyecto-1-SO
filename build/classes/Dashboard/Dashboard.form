@@ -402,14 +402,29 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Placas_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Placas_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_CPU_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_CPU_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_RAM_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_RAM_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_FuenteA_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_FuenteA_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Tarjetas_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Tarjetas_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
                   <Properties>
@@ -478,6 +493,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Ensamblador_Apple">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Ensamblador_AppleStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Cont_Trabajadores_Apple">
                   <Properties>
@@ -1971,16 +1989,34 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Placas_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Placas_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_CPU_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_CPU_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_RAM_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_RAM_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_FuenteA_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_FuenteA_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Tarjetas_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Tarjetas_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="Cont_Ensamblador_MSI">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="Cont_Ensamblador_MSIStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Cont_Trabajadores_MSI">
                   <Properties>

@@ -28,7 +28,7 @@ public class Assemblers extends Thread{
     public void run() {
         while (isActive) {
             try {
-                // Verificar si hay suficientes componentes para ensamblar un juego
+                // Verificar si hay suficientes componentes para ensamblar una computadora
                 this.mutex.acquire(1);
                 if (this.storehouse.canAssembleComputer()) {
 

@@ -4,17 +4,71 @@
  */
 package Dashboard;
 
+import Classes.Company;
+import Classes.Director;
+//import MainClasses.DirectorWatch;
+import Classes.Workers; 
+import Classes.Storehouse;
+import Classes.Assemblers;
+import Classes.LinkedList;
+// import MainClasses.ProjectManager;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.Semaphore;
+import javax.swing.JLabel;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.Timer;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartPanel;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.data.category.CategoryDataset;
+//import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author digio
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    //Se inicializan las compañias con parametros por defecto
+        Company apple = new Company(18, "Apple");
+        Company msi = new Company(20, "MSI");
+        boolean iniciado=false;
+        int max_apple = 18; //Carnet de Alexia Leon termina en 6
+        int max_msi = 20; //Carnet de Diego Di Giosa termina en 8
+    
+        //Se inicializa la variable de duracion de dia
+        int dayDuration;
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+        
+         //Se pasan los labels correspondientes a cada compañia y sus drives para manipular la interfaz        
+        JLabel[] appStorehouseLabels = {Almacen_Placas_Apple, Almacen_CPU_Apple, Almacen_RAM_Apple, Almacen_FuenteA_Apple, Almacen_Tarjetas_Apple, Apple_Deadline_Counter, Apple_Cont_SinTarjeta, Apple_Cont_ConTarjeta, Cont_Days_Apple};
+        
+        
+        JLabel[] msiStorehouseLabels = {Almacen_Placas_MSI, Almacen_CPU_MSI, Almacen_RAM_MSI, Almacen_FuenteA_MSI, Almacen_Tarjetas_MSI, MSI_Deadline_Counter, MSI_Cont_SinTarjeta, MSI_Cont_ConTarjeta, Cont_Days_MSI};  
+        
+        
+        
+        
+        this.apple.getCompanyStorehouse().setLabels(appStorehouseLabels);
+        
+        this.msi.getCompanyStorehouse().setLabels(msiStorehouseLabels);
+        
+      
+        
     }
 
     /**
@@ -296,6 +350,36 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("TRABAJADORES DISPONIBLES:");
 
+        Cont_Placas_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Placas_AppleStateChanged(evt);
+            }
+        });
+
+        Cont_CPU_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_CPU_AppleStateChanged(evt);
+            }
+        });
+
+        Cont_RAM_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_RAM_AppleStateChanged(evt);
+            }
+        });
+
+        Cont_FuenteA_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_FuenteA_AppleStateChanged(evt);
+            }
+        });
+
+        Cont_Tarjetas_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Tarjetas_AppleStateChanged(evt);
+            }
+        });
+
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Productores de placas base:");
@@ -319,6 +403,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Ensambladores:");
+
+        Cont_Ensamblador_Apple.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Ensamblador_AppleStateChanged(evt);
+            }
+        });
 
         Cont_Trabajadores_Apple.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Cont_Trabajadores_Apple.setForeground(new java.awt.Color(255, 255, 255));
@@ -1069,6 +1159,42 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel90.setForeground(new java.awt.Color(255, 255, 255));
         jLabel90.setText("Ensambladores:");
 
+        Cont_Placas_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Placas_MSIStateChanged(evt);
+            }
+        });
+
+        Cont_CPU_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_CPU_MSIStateChanged(evt);
+            }
+        });
+
+        Cont_RAM_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_RAM_MSIStateChanged(evt);
+            }
+        });
+
+        Cont_FuenteA_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_FuenteA_MSIStateChanged(evt);
+            }
+        });
+
+        Cont_Tarjetas_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Tarjetas_MSIStateChanged(evt);
+            }
+        });
+
+        Cont_Ensamblador_MSI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Ensamblador_MSIStateChanged(evt);
+            }
+        });
+
         Cont_Trabajadores_MSI.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Cont_Trabajadores_MSI.setForeground(new java.awt.Color(255, 255, 255));
         Cont_Trabajadores_MSI.setText("0");
@@ -1396,6 +1522,428 @@ public class Dashboard extends javax.swing.JFrame {
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
+
+    private void Cont_Placas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Placas_Apple.getValue() <= 0){
+                this.Cont_Placas_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Placas_Apple.setValue((int)this.Cont_Placas_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getMotherboardProducers().getlSize();
+                int cont2 = (int) Cont_Placas_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker("MotherboardProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("MotherboardProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
+                        apple.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Placas_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Placas_AppleStateChanged
+
+    private void Cont_CPU_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_CPU_Apple.getValue() <= 0){
+                this.Cont_CPU_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_CPU_Apple.setValue((int)this.Cont_CPU_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getCPUProducers().getlSize();
+                int cont2 = (int) Cont_CPU_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker("CPUProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("CPUProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
+                        apple.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_CPU_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_CPU_AppleStateChanged
+
+    private void Cont_RAM_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_RAM_Apple.getValue() <= 0){
+                this.Cont_RAM_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_RAM_Apple.setValue((int)this.Cont_RAM_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getRAMProducers().getlSize();
+                int cont2 = (int) Cont_RAM_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker("RAMProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("RAMProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
+                        apple.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_RAM_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_RAM_AppleStateChanged
+
+    private void Cont_FuenteA_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_FuenteA_Apple.getValue() <= 0){
+                this.Cont_FuenteA_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_FuenteA_Apple.setValue((int)this.Cont_FuenteA_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getPowerSupProducers().getlSize();
+                int cont2 = (int) Cont_FuenteA_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker("PowerSupplyProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("PowerSupplyProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
+                        apple.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_FuenteA_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_FuenteA_AppleStateChanged
+
+    private void Cont_Tarjetas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Tarjetas_Apple.getValue() <= 0){
+                this.Cont_Tarjetas_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Tarjetas_Apple.setValue((int)this.Cont_Tarjetas_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getGraphicCardProducers().getlSize();
+                int cont2 = (int) Cont_Tarjetas_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker("GraphicCardProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("GraphicCardProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
+                        apple.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Tarjetas_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Tarjetas_AppleStateChanged
+
+    private void Cont_Ensamblador_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Ensamblador_Apple.getValue() <= 0){
+                this.Cont_Ensamblador_Apple.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Ensamblador_Apple.setValue((int)this.Cont_Ensamblador_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getAssemblers().getlSize();
+                int cont2 = (int) Cont_Ensamblador_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeAssembler();
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Assemblers assembler = new Assemblers(this.apple.getCompanyStorehouse(), this.apple.getMutex(), this.dayDuration);
+                        apple.addAssembler(assembler);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Tarjetas_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Ensamblador_AppleStateChanged
+
+    private void Cont_Placas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_MSIStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Placas_MSI.getValue() <= 0){
+                this.Cont_Placas_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Placas_MSI.setValue((int)this.Cont_Placas_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getMotherboardProducers().getlSize();
+                int cont2 = (int) Cont_Placas_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeWorker("MotherboardProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("MotherboardProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
+                        msi.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Placas_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Placas_MSIStateChanged
+
+    private void Cont_CPU_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_MSIStateChanged
+       if(iniciado == true){
+            if((int)this.Cont_CPU_MSI.getValue() <= 0){
+                this.Cont_CPU_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_CPU_MSI.setValue((int)this.Cont_CPU_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getCPUProducers().getlSize();
+                int cont2 = (int) Cont_CPU_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeWorker("CPUProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Workers worker = new Workers("CPUProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
+                        msi.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_CPU_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_CPU_MSIStateChanged
+
+    private void Cont_RAM_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_MSIStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_RAM_MSI.getValue() <= 0){
+                this.Cont_RAM_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_RAM_MSI.setValue((int)this.Cont_RAM_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getRAMProducers().getlSize();
+                int cont2 = (int) Cont_RAM_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeWorker("RAMProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        
+                        Workers worker = new Workers("RAMProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
+                        msi.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_RAM_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_RAM_MSIStateChanged
+
+    private void Cont_FuenteA_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_MSIStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_FuenteA_MSI.getValue() <= 0){
+                this.Cont_FuenteA_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_FuenteA_MSI.setValue((int)this.Cont_FuenteA_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getPowerSupProducers().getlSize();
+                int cont2 = (int) Cont_FuenteA_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeWorker("PowerSupplyProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        
+                        Workers worker = new Workers("PowerSupplyProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
+                        msi.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_FuenteA_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_FuenteA_MSIStateChanged
+
+    private void Cont_Tarjetas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_MSIStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Tarjetas_MSI.getValue() <= 0){
+                this.Cont_Tarjetas_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Tarjetas_MSI.setValue((int)this.Cont_Tarjetas_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getGraphicCardProducers().getlSize();
+                int cont2 = (int) Cont_Tarjetas_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeWorker("GraphicCardProduction");
+                        cont --;
+                    }
+                }else if (cont < cont2){
+                    
+                    while (cont < cont2){
+                        Workers worker = new Workers("GraphicCardProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
+                        msi.addWorker(worker);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Tarjetas_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Tarjetas_MSIStateChanged
+
+    private void Cont_Ensamblador_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_MSIStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Ensamblador_MSI.getValue() <= 0){
+                this.Cont_Ensamblador_MSI.setValue(1);
+                this.repaint();
+            }        
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Ensamblador_MSI.setValue((int)this.Cont_Ensamblador_MSI.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = msi.getAssemblers().getlSize();
+                int cont2 = (int) Cont_Ensamblador_MSI.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        msi.removeAssembler();
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+                        Assemblers assembler = new Assemblers(this.msi.getCompanyStorehouse(), this.msi.getMutex(), this.dayDuration);
+                        msi.addAssembler(assembler);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Ensamblador_MSI.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Ensamblador_MSIStateChanged
 
     /**
      * @param args the command line arguments

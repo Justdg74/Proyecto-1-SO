@@ -235,12 +235,12 @@ public class Company {
 
                 case "GraphicCardProduction":
                     this.graphicCardProducers.insertEnd(workerNode);
-                    this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
+                    //this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
                     //this.labels[12].setText(Integer.toString(this.graphicCardProducers.getlSize()));
                     break;
             }        
 
-            this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
+            //this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
             //this.labels[7].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
             worker.start();
             
@@ -386,14 +386,14 @@ public class Company {
                 tempWorker = Workers.class.cast(tempNode.getData());
                 tempWorker.setIsActive(false);
                 this.graphicCardProducers.delLast();
-                this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
+                //this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
                 //this.labels[12].setText(Integer.toString(this.graphicCardProducers.getlSize()));
                 
                 break;
             
         }
         
-        this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
+        //this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
         //this.labels[7].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
         
     }

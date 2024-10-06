@@ -67,6 +67,11 @@ public class Dashboard extends javax.swing.JFrame {
         
         this.msi.getCompanyStorehouse().setLabels(msiStorehouseLabels);
         
+        
+        //Se refleja la lectura la lectura de desarrolladores maximos de cada compañia    
+        Cont_Trabajadores_Apple.setText(Integer.toString(this.apple.getMaxWorkers()));
+        Cont_Trabajadores_MSI.setText(Integer.toString(this.msi.getMaxWorkers()));
+        
       
         
     }
@@ -251,6 +256,12 @@ public class Dashboard extends javax.swing.JFrame {
         SaveButton.setText("GUARDAR");
         Inicio.add(SaveButton);
         SaveButton.setBounds(630, 430, 140, 40);
+
+        Cont_Day_Duration.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                Cont_Day_DurationStateChanged(evt);
+            }
+        });
         Inicio.add(Cont_Day_Duration);
         Cont_Day_Duration.setBounds(180, 400, 70, 30);
 
@@ -1876,7 +1887,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Cont_FuenteA_MSIStateChanged
 
     private void Cont_Tarjetas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_MSIStateChanged
-        if(iniciado == true){
+        
             if((int)this.Cont_Tarjetas_MSI.getValue() <= 0){
                 this.Cont_Tarjetas_MSI.setValue(1);
                 this.repaint();
@@ -1904,10 +1915,7 @@ public class Dashboard extends javax.swing.JFrame {
                     }
                 }
             }
-        }else{
-            this.Cont_Tarjetas_MSI.setValue(1);
-            this.repaint();
-        }
+        
     }//GEN-LAST:event_Cont_Tarjetas_MSIStateChanged
 
     private void Cont_Ensamblador_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_MSIStateChanged
@@ -1944,6 +1952,18 @@ public class Dashboard extends javax.swing.JFrame {
             this.repaint();
         }
     }//GEN-LAST:event_Cont_Ensamblador_MSIStateChanged
+
+    private void Cont_Day_DurationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Day_DurationStateChanged
+       if(iniciado == true){
+            if((int)this.Cont_Day_Duration.getValue() <= 0){
+                this.Cont_Day_Duration.setValue(1);
+                this.repaint();
+            }
+        }else{
+            this.Cont_Day_Duration.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Day_DurationStateChanged
 
     /**
      * @param args the command line arguments

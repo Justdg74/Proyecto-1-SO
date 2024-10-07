@@ -30,7 +30,7 @@ public class Assemblers extends Thread{
             try {
                 // Verificar si hay suficientes componentes para ensamblar una computadora
                 this.mutex.acquire(1);
-                if (this.storehouse.canAssembleComputer()) {
+                if (this.storehouse.canAssembleComputer()) { //Si todos los componentes pasan sus requerimientos de produccion para ensamblar
 
                     // Consumir componentes
                     storehouse.assembleComputer();

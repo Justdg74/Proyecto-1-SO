@@ -6,12 +6,12 @@ package Dashboard;
 
 import Classes.Company;
 import Classes.Director;
-//import MainClasses.DirectorWatch;
+import Classes.DirectorWatch;
 import Classes.Workers; 
 import Classes.Storehouse;
 import Classes.Assemblers;
 import Classes.LinkedList;
-// import MainClasses.ProjectManager;
+import Classes.ProjectManager;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +24,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 //import org.jfree.chart.ChartFactory;
 //import org.jfree.chart.ChartPanel;
 //import org.jfree.chart.JFreeChart;
@@ -45,6 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         boolean iniciado=false;
         int max_apple = 18; //Carnet de Alexia Leon termina en 6
         int max_msi = 20; //Carnet de Diego Di Giosa termina en 8
+        private String path;
     
         //Se inicializa la variable de duracion de dia
         int dayDuration;
@@ -72,10 +75,257 @@ public class Dashboard extends javax.swing.JFrame {
         Cont_Trabajadores_Apple.setText(Integer.toString(this.apple.getMaxWorkers()));
         Cont_Trabajadores_MSI.setText(Integer.toString(this.msi.getMaxWorkers()));
         
-      
-        
+    }
+         public String getPath() {
+        return path;
+        }
+
+        public void setPath(String path) {
+        this.path = path;
+        }
+
+    public JLabel getAlmacen_CPU_Apple() {
+        return Almacen_CPU_Apple;
     }
 
+    public void setAlmacen_CPU_Apple(JLabel Almacen_CPU_Apple) {
+        this.Almacen_CPU_Apple = Almacen_CPU_Apple;
+    }
+
+    public JLabel getAlmacen_CPU_MSI() {
+        return Almacen_CPU_MSI;
+    }
+
+    public void setAlmacen_CPU_MSI(JLabel Almacen_CPU_MSI) {
+        this.Almacen_CPU_MSI = Almacen_CPU_MSI;
+    }
+
+    public JLabel getAlmacen_FuenteA_Apple() {
+        return Almacen_FuenteA_Apple;
+    }
+
+    public void setAlmacen_FuenteA_Apple(JLabel Almacen_FuenteA_Apple) {
+        this.Almacen_FuenteA_Apple = Almacen_FuenteA_Apple;
+    }
+
+    public JLabel getAlmacen_FuenteA_MSI() {
+        return Almacen_FuenteA_MSI;
+    }
+
+    public void setAlmacen_FuenteA_MSI(JLabel Almacen_FuenteA_MSI) {
+        this.Almacen_FuenteA_MSI = Almacen_FuenteA_MSI;
+    }
+
+    public JLabel getAlmacen_Placas_Apple() {
+        return Almacen_Placas_Apple;
+    }
+
+    public void setAlmacen_Placas_Apple(JLabel Almacen_Placas_Apple) {
+        this.Almacen_Placas_Apple = Almacen_Placas_Apple;
+    }
+
+    public JLabel getAlmacen_Placas_MSI() {
+        return Almacen_Placas_MSI;
+    }
+
+    public void setAlmacen_Placas_MSI(JLabel Almacen_Placas_MSI) {
+        this.Almacen_Placas_MSI = Almacen_Placas_MSI;
+    }
+
+    public JLabel getAlmacen_RAM_Apple() {
+        return Almacen_RAM_Apple;
+    }
+
+    public void setAlmacen_RAM_Apple(JLabel Almacen_RAM_Apple) {
+        this.Almacen_RAM_Apple = Almacen_RAM_Apple;
+    }
+
+    public JLabel getAlmacen_RAM_MSI() {
+        return Almacen_RAM_MSI;
+    }
+
+    public void setAlmacen_RAM_MSI(JLabel Almacen_RAM_MSI) {
+        this.Almacen_RAM_MSI = Almacen_RAM_MSI;
+    }
+
+    public JLabel getAlmacen_Tarjetas_Apple() {
+        return Almacen_Tarjetas_Apple;
+    }
+
+    public void setAlmacen_Tarjetas_Apple(JLabel Almacen_Tarjetas_Apple) {
+        this.Almacen_Tarjetas_Apple = Almacen_Tarjetas_Apple;
+    }
+
+    public JLabel getAlmacen_Tarjetas_MSI() {
+        return Almacen_Tarjetas_MSI;
+    }
+
+    public void setAlmacen_Tarjetas_MSI(JLabel Almacen_Tarjetas_MSI) {
+        this.Almacen_Tarjetas_MSI = Almacen_Tarjetas_MSI;
+    }
+
+    public JLabel getApple_Cont_ConTarjeta() {
+        return Apple_Cont_ConTarjeta;
+    }
+
+    public void setApple_Cont_ConTarjeta(JLabel Apple_Cont_ConTarjeta) {
+        this.Apple_Cont_ConTarjeta = Apple_Cont_ConTarjeta;
+    }
+
+    public JLabel getApple_Cont_SinTarjeta() {
+        return Apple_Cont_SinTarjeta;
+    }
+
+    public void setApple_Cont_SinTarjeta(JLabel Apple_Cont_SinTarjeta) {
+        this.Apple_Cont_SinTarjeta = Apple_Cont_SinTarjeta;
+    }
+
+    public JLabel getApple_Deadline_Counter() {
+        return Apple_Deadline_Counter;
+    }
+
+    public void setApple_Deadline_Counter(JLabel Apple_Deadline_Counter) {
+        this.Apple_Deadline_Counter = Apple_Deadline_Counter;
+    }
+
+    public JLabel getApple_Director_State() {
+        return Apple_Director_State;
+    }
+
+    public void setApple_Director_State(JLabel Apple_Director_State) {
+        this.Apple_Director_State = Apple_Director_State;
+    }
+
+    public JLabel getApple_Discount_Counter() {
+        return Apple_Discount_Counter;
+    }
+
+    public void setApple_Discount_Counter(JLabel Apple_Discount_Counter) {
+        this.Apple_Discount_Counter = Apple_Discount_Counter;
+    }
+
+    public JLabel getApple_Fail_Counter() {
+        return Apple_Fail_Counter;
+    }
+
+    public void setApple_Fail_Counter(JLabel Apple_Fail_Counter) {
+        this.Apple_Fail_Counter = Apple_Fail_Counter;
+    }
+
+    public JLabel getApple_Gain_Counter() {
+        return Apple_Gain_Counter;
+    }
+
+    public void setApple_Gain_Counter(JLabel Apple_Gain_Counter) {
+        this.Apple_Gain_Counter = Apple_Gain_Counter;
+    }
+
+    public JLabel getApple_Loss_Counter() {
+        return Apple_Loss_Counter;
+    }
+
+    public void setApple_Loss_Counter(JLabel Apple_Loss_Counter) {
+        this.Apple_Loss_Counter = Apple_Loss_Counter;
+    }
+
+    public JLabel getApple_Pm_State() {
+        return Apple_Pm_State;
+    }
+
+    public void setApple_Pm_State(JLabel Apple_Pm_State) {
+        this.Apple_Pm_State = Apple_Pm_State;
+    }
+
+    public JLabel getApple_Utility_Counter() {
+        return Apple_Utility_Counter;
+    }
+
+    public void setApple_Utility_Counter(JLabel Apple_Utility_Counter) {
+        this.Apple_Utility_Counter = Apple_Utility_Counter;
+    }
+
+    public JLabel getMSI_Cont_ConTarjeta() {
+        return MSI_Cont_ConTarjeta;
+    }
+
+    public void setMSI_Cont_ConTarjeta(JLabel MSI_Cont_ConTarjeta) {
+        this.MSI_Cont_ConTarjeta = MSI_Cont_ConTarjeta;
+    }
+
+    public JLabel getMSI_Cont_SinTarjeta() {
+        return MSI_Cont_SinTarjeta;
+    }
+
+    public void setMSI_Cont_SinTarjeta(JLabel MSI_Cont_SinTarjeta) {
+        this.MSI_Cont_SinTarjeta = MSI_Cont_SinTarjeta;
+    }
+
+    public JLabel getMSI_Deadline_Counter() {
+        return MSI_Deadline_Counter;
+    }
+
+    public void setMSI_Deadline_Counter(JLabel MSI_Deadline_Counter) {
+        this.MSI_Deadline_Counter = MSI_Deadline_Counter;
+    }
+
+    public JLabel getMSI_Director_State() {
+        return MSI_Director_State;
+    }
+
+    public void setMSI_Director_State(JLabel MSI_Director_State) {
+        this.MSI_Director_State = MSI_Director_State;
+    }
+
+    public JLabel getMSI_Discount_Counter() {
+        return MSI_Discount_Counter;
+    }
+
+    public void setMSI_Discount_Counter(JLabel MSI_Discount_Counter) {
+        this.MSI_Discount_Counter = MSI_Discount_Counter;
+    }
+
+    public JLabel getMSI_Fail_Counter() {
+        return MSI_Fail_Counter;
+    }
+
+    public void setMSI_Fail_Counter(JLabel MSI_Fail_Counter) {
+        this.MSI_Fail_Counter = MSI_Fail_Counter;
+    }
+
+    public JLabel getMSI_Gain_Counter() {
+        return MSI_Gain_Counter;
+    }
+
+    public void setMSI_Gain_Counter(JLabel MSI_Gain_Counter) {
+        this.MSI_Gain_Counter = MSI_Gain_Counter;
+    }
+
+    public JLabel getMSI_Loss_Counter() {
+        return MSI_Loss_Counter;
+    }
+
+    public void setMSI_Loss_Counter(JLabel MSI_Loss_Counter) {
+        this.MSI_Loss_Counter = MSI_Loss_Counter;
+    }
+
+    public JLabel getMSI_Pm_State() {
+        return MSI_Pm_State;
+    }
+
+    public void setMSI_Pm_State(JLabel MSI_Pm_State) {
+        this.MSI_Pm_State = MSI_Pm_State;
+    }
+
+    public JLabel getMSI_Utility_Counter() {
+        return MSI_Utility_Counter;
+    }
+
+    public void setMSI_Utility_Counter(JLabel MSI_Utility_Counter) {
+        this.MSI_Utility_Counter = MSI_Utility_Counter;
+    }
+        
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1531,7 +1781,253 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
-        // TODO add your handling code here:
+         //se lee el txt
+    if (iniciado==false){
+        iniciado=true;
+    JFileChooser file = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(".TXT","txt");
+    file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    file.setFileFilter(filter);
+    int selection=file.showOpenDialog(this);
+    
+    if(selection==JFileChooser.APPROVE_OPTION) {
+        File archive=file.getSelectedFile(); 
+        String path=archive.getAbsolutePath();
+        setPath(path);
+    
+        if(!path.contains("txt")) {
+        JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo txt");
+        }
+        else {
+        try{
+            File archivo = new File (path);
+            FileReader fr = new FileReader(archivo); 
+            BufferedReader br = new BufferedReader(fr); 
+                 
+            String cadena;
+            String complete=""; 
+      
+            while ((cadena=br.readLine())!=null) { //lee hasta llegar a null que significa que se acabo el archivo
+
+                if(!cadena.isEmpty()&& !cadena.isBlank()) { //revisa que la linea no sea vacia/que el tamaño de la cadena sea 0
+                    complete+=cadena+"\n";
+                }
+            }
+                
+            fr.close();
+            br.close();
+            complete=complete.trim(); //quita linea en blanco al final
+            //el !"".equals es para verificar que el string no sea solo un espacio en blanco
+            if(!"".equals(complete)) {
+                String[] info;
+                String [] todo=complete.split(";");
+                String [] Dias=todo[0].split("\n");
+                int duracionDias=Integer.parseInt(Dias[1]);
+                if(duracionDias<=0) {
+                    throw new Exception("La duracion del dia no puede ser 0");
+                }
+                this.Cont_Day_Duration.setValue(duracionDias);
+                //System.out.println(duracionDias); //todo bien aqui
+                String[] Diasdead=todo[1].split("\n");
+                //System.out.println(Diasdead[1]);
+                int Deadline=Integer.parseInt(Diasdead[2]);
+                if(Deadline<=0) {
+                    throw new Exception("El tiempo de entrega no puede ser 0");
+                }
+                this.Cont_Deadline.setValue(Deadline);
+                getApple_Deadline_Counter().setText(Integer.toString(Deadline)); //5
+                getMSI_Deadline_Counter().setText(Integer.toString(Deadline));
+                
+                //ya tengo la duracion del dia y la deadline se crean/agregan las cosas
+                apple.setDayDuration(duracionDias); //3000 milseg, 3 seg
+                msi.setDayDuration(duracionDias);
+                apple.getCompanyStorehouse().setDeadLine(Deadline); //5 days
+                
+                
+                //apple.getCompanyStorehouse().setDaysRemaining(Deadline);
+                msi.getCompanyStorehouse().setDeadLine(Deadline);
+                
+                //msi.getCompanyStorehouse().setDaysRemaining(Deadline);
+                
+                //Conversion de hora y minutos   
+                int hourDuration = (dayDuration/24);
+                int minDuration = hourDuration/60;
+                if(hourDuration == 0){
+                    hourDuration = 1;
+                }
+                if(minDuration == 0){
+                   minDuration = 1;
+                }
+               
+                
+                ProjectManager appleMan = new ProjectManager( this.dayDuration, hourDuration, minDuration,this.apple.getCompanyStorehouse(),this.apple.getMutex(), Apple_Pm_State);
+                Director appleDir = new Director(this.apple.getCompanyStorehouse(), this.apple.getMutex(), appleMan, minDuration, Apple_Fail_Counter, Apple_Discount_Counter);
+                DirectorWatch appleWatch = new DirectorWatch( this.dayDuration, hourDuration, minDuration, appleDir, Apple_Director_State, this.apple);
+
+        
+                ProjectManager MsiMan = new ProjectManager(this.dayDuration, hourDuration, minDuration, this.msi.getCompanyStorehouse(), this.msi.getMutex(), MSI_Pm_State);
+                Director MsiDir = new Director(this.msi.getCompanyStorehouse(), this.msi.getMutex(), MsiMan, minDuration, MSI_Fail_Counter, MSI_Discount_Counter);
+                DirectorWatch MsiWatch = new DirectorWatch(this.dayDuration, hourDuration, minDuration, MsiDir, MSI_Director_State,this.msi);
+                
+               //todo2 tiene cosas de cartoon
+                todo[2]=todo[2].trim();
+                String [] infocom1=todo[2].split("-");
+                //todo3 tiene cosas de nick
+                todo[3]=todo[3].trim();
+                String [] infocom2=todo[3].split("-");
+                
+                if (infocom1[0].compareTo("Cartoon")==0) { //el if es porsia 
+//                     System.out.println("jajajaj "+infocom1[0]);
+//                     System.out.println(infocom1[1]);
+                     infocom1[1]=infocom1[1].trim();
+                     String [] divTra=infocom1[1].split(":");
+                     divTra[1]=divTra[1].trim();
+                     String [] trabajadores=divTra[1].split("\n");
+                     
+                     for (int i = 0; i < trabajadores.length; i++) {
+                         //System.out.println(i+" "+trabajadores[i]);
+                         String [] cantidad=trabajadores[i].split(",");
+                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                         //System.out.println(cantidad[1]);
+                         if(Integer.parseInt(cantidad[1])>0) {
+                            msi.addWorker(i,Integer.parseInt(cantidad[1]));
+                         }else {
+                         throw new Exception("La cantidad de trabajadores no puede ser 0");
+                         }
+                         
+                     }
+                    if(msi.getMotherboardProducers().getlSize()+msi.getCPUProducers().getlSize()+msi.getRAMProducers().getlSize()+msi.getPowerSupProducers().getlSize()+msi.getGraphicCardProducers().getlSize()+msi.getAssemblers().getlSize()>20){
+                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                    }
+                    //MsiMan.start();
+                    //MsiDir.start();
+                    //MsiWatch.start();
+                    System.out.println("Listo msi");
+                    this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
+                    this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
+                    this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
+                    this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
+                    this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
+                    this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
+                 
+                 }
+                 else if (infocom1[0].compareTo("Nick")==0) {
+                     infocom1[1]=infocom1[1].trim();
+                     String [] divTra=infocom1[1].split(":");
+                     divTra[1]=divTra[1].trim();
+                     String [] trabajadores=divTra[1].split("\n");
+                     
+                     for (int i = 0; i < trabajadores.length; i++) {
+                         //System.out.println(i+" "+trabajadores[i]);
+                         String [] cantidad=trabajadores[i].split(",");
+                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                         //System.out.println(cantidad[1]);
+                         if(Integer.parseInt(cantidad[1])>0) {
+                            apple.addWorker(i,Integer.parseInt(cantidad[1]));
+                         } else {
+                         throw new Exception("La cantidad de trabajadores no puede ser 0");
+                         }
+                         
+                    }
+                    //appleMan.start();
+                    //appleDir.start();
+                    //appleWatch.start();
+                    this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
+                    this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
+                    this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
+                    this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
+                    this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
+                    this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
+                    
+                 }
+                 
+                 if (infocom2[0].compareTo("Cartoon")==0) {
+//                     System.out.println("jejejeje "+infocom2[0]);
+//                     System.out.println(infocom2[1]);
+                     infocom1[1]=infocom1[1].trim();
+                     String [] divTra=infocom1[1].split(":");
+                     divTra[1]=divTra[1].trim();
+                     String [] trabajadores=divTra[1].split("\n");
+                     
+                     for (int i = 0; i < trabajadores.length; i++) {
+                         //System.out.println(i+" "+trabajadores[i]);
+                         String [] cantidad=trabajadores[i].split(",");
+                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                         //System.out.println(cantidad[1]);
+                         if(Integer.parseInt(cantidad[1])>0) { 
+                          msi.addWorker(i,Integer.parseInt(cantidad[1]));
+                        }else {
+                         throw new Exception("La cantidad de trabajadores no puede ser 0");
+                         }
+                         
+                     }
+                     
+                    //MsiMan.start();
+                    //MsiDir.start();
+                    //MsiWatch.start();
+                    this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
+                    this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
+                    this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
+                    this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
+                    this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
+                    this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
+                 }
+                 else if (infocom2[0].compareTo("Nick")==0) {
+                     String [] divTra=infocom2[1].split(":");
+                     divTra[1]=divTra[1].trim();
+                     String [] trabajadores=divTra[1].split("\n");
+                     System.out.println(infocom2[0]);
+                     for (int i = 0; i < trabajadores.length; i++) {
+                         //System.out.println(i+" "+trabajadores[i]);
+                         String [] cantidad=trabajadores[i].split(",");
+                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                         //System.out.println(cantidad[1]);
+                         if(Integer.parseInt(cantidad[1])>0) {
+                            apple.addWorker(i,Integer.parseInt(cantidad[1]));
+                         }else {
+                         throw new Exception("La cantidad de trabajadores no puede ser 0");
+                         }
+                         
+                     }
+                     if(apple.getMotherboardProducers().getlSize()+apple.getCPUProducers().getlSize()+apple.getRAMProducers().getlSize()+apple.getPowerSupProducers().getlSize()+apple.getGraphicCardProducers().getlSize()+apple.getAssemblers().getlSize()>18){
+                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                    }
+                    //appleMan.start();
+                    //appleDir.start();
+                    //appleWatch.start();
+                    this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
+                    this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
+                    this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
+                    this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
+                    this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
+                    this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
+                    
+                      
+                      System.out.println("Listo nick");
+                 
+                 
+                 }
+                 
+                    appleMan.start();
+                    appleDir.start();
+                    appleWatch.start();
+                    MsiMan.start();
+                    MsiDir.start();
+                    MsiWatch.start();
+                
+            
+            }
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erorr!!!! Asegurate de haber cargado el archivo correcto");
+            System.exit(0);
+            }
+        }
+    }}
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
     private void Cont_Placas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_AppleStateChanged
@@ -1551,14 +2047,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker("MotherboardProduction");
+                        apple.removeWorker(0);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("MotherboardProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
-                        apple.addWorker(worker);
+                        
+                        apple.addWorker(0,1);
                         cont ++;
                     }
                 }
@@ -1586,14 +2082,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker("CPUProduction");
+                        apple.removeWorker(1);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("CPUProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
-                        apple.addWorker(worker);
+ 
+                        apple.addWorker(1,1);
                         cont ++;
                     }
                 }
@@ -1621,14 +2117,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker("RAMProduction");
+                        apple.removeWorker(2);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("RAMProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
-                        apple.addWorker(worker);
+                        
+                        apple.addWorker(2,1);
                         cont ++;
                     }
                 }
@@ -1656,14 +2152,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker("PowerSupplyProduction");
+                        apple.removeWorker(3);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("PowerSupplyProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
-                        apple.addWorker(worker);
+                        
+                        apple.addWorker(3,1);
                         cont ++;
                     }
                 }
@@ -1691,14 +2187,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker("GraphicCardProduction");
+                        apple.removeWorker(4);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("GraphicCardProduction", "Apple", dayDuration, apple.getCompanyStorehouse(), apple.getMutex());
-                        apple.addWorker(worker);
+                       
+                        apple.addWorker(4,1);
                         cont ++;
                     }
                 }
@@ -1726,14 +2222,13 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeAssembler();
+                        apple.removeWorker(5);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Assemblers assembler = new Assemblers(this.apple.getCompanyStorehouse(), this.apple.getMutex(), this.dayDuration);
-                        apple.addAssembler(assembler);
+                        apple.addWorker(5,1);
                         cont ++;
                     }
                 }
@@ -1761,14 +2256,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker("MotherboardProduction");
+                        msi.removeWorker(0);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("MotherboardProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
-                        msi.addWorker(worker);
+                        
+                        msi.addWorker(0,1);
                         cont ++;
                     }
                 }
@@ -1796,14 +2291,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker("CPUProduction");
+                        msi.removeWorker(1);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Workers worker = new Workers("CPUProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
-                        msi.addWorker(worker);
+                        
+                        msi.addWorker(1,1);
                         cont ++;
                     }
                 }
@@ -1831,15 +2326,15 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker("RAMProduction");
+                        msi.removeWorker(2);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
                         
-                        Workers worker = new Workers("RAMProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
-                        msi.addWorker(worker);
+                        
+                        msi.addWorker(2,1);
                         cont ++;
                     }
                 }
@@ -1867,15 +2362,15 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker("PowerSupplyProduction");
+                        msi.removeWorker(3);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
                         
-                        Workers worker = new Workers("PowerSupplyProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
-                        msi.addWorker(worker);
+                        
+                        msi.addWorker(3,1);
                         cont ++;
                     }
                 }
@@ -1903,14 +2398,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker("GraphicCardProduction");
+                        msi.removeWorker(4);
                         cont --;
                     }
                 }else if (cont < cont2){
                     
                     while (cont < cont2){
-                        Workers worker = new Workers("GraphicCardProduction", "MSI", dayDuration, msi.getCompanyStorehouse(), msi.getMutex());
-                        msi.addWorker(worker);
+                        
+                        msi.addWorker(4,1);
                         cont ++;
                     }
                 }
@@ -1935,14 +2430,14 @@ public class Dashboard extends javax.swing.JFrame {
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeAssembler();
+                        msi.removeWorker(5);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        Assemblers assembler = new Assemblers(this.msi.getCompanyStorehouse(), this.msi.getMutex(), this.dayDuration);
-                        msi.addAssembler(assembler);
+                        
+                        msi.addWorker(5,1);
                         cont ++;
                     }
                 }

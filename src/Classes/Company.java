@@ -204,130 +204,63 @@ public class Company {
         this.minDuration = minDuration;
     }
 
-    public void addWorker(Workers worker){
-        if((this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()) < this.maxWorkers){
-            Node workerNode = new Node(worker);
-            switch (worker.getWorkType()){
-
-                case "MotherboardProduction":
-                    this.motherboardProducers.insertEnd(workerNode);
-                    this.labels[1].setText(Integer.toString(this.motherboardProducers.getlSize()));
-                    //this.labels[8].setText(Integer.toString(this.motherboardProducers.getlSize()));
-                    break;
-
-                case "CPUProduction":
-                    this.CPUProducers.insertEnd(workerNode);
-                    this.labels[2].setText(Integer.toString(this.CPUProducers.getlSize()));
-                    //this.labels[9].setText(Integer.toString(this.CPUProducers.getlSize()));
-                    break;
-
-                case "RAMProduction":
-                    this.RAMProducers.insertEnd(workerNode);
-                    this.labels[3].setText(Integer.toString(this.RAMProducers.getlSize()));
-                    //this.labels[10].setText(Integer.toString(this.RAMProducers.getlSize()));
-                    break;
-
-                case "PowerSupplyProduction":
-                    this.powerSupProducers.insertEnd(workerNode);
-                    this.labels[4].setText(Integer.toString(this.powerSupProducers.getlSize()));
-                    //this.labels[11].setText(Integer.toString(this.powerSupProducers.getlSize()));
-                    break;
-
-                case "GraphicCardProduction":
-                    this.graphicCardProducers.insertEnd(workerNode);
-                    //this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
-                    //this.labels[12].setText(Integer.toString(this.graphicCardProducers.getlSize()));
-                    break;
-            }        
-
-            //this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-            //this.labels[7].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-            worker.start();
-            
-        }else{
-            devLimitNotice();
+    public void addWorker(int type, int cantidad){
+     
+        if(type==0) {
+            for (int i = 1; i<=cantidad; i++) {
+                Workers motherboard =new Workers(0,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(motherboard);
+                getMotherboardProducers().insertStart(workNode);
+                motherboard.start();
+            }
+        }
+        if(type==1) {
+            for (int i = 1; i<=cantidad; i++) {
+                Workers cpu =new Workers(1,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(cpu);
+                getCPUProducers().insertStart(workNode);
+                cpu.start();
+            }
+        }
+        if(type==2) {
+            for (int i = 1; i<=cantidad; i++) {
+                Workers ram =new Workers(2,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(ram);
+                getRAMProducers().insertStart(workNode);
+                ram.start();
+            }
+        }
+        if(type==3) {
+            for (int i = 1; i<=cantidad; i++) {
+                Workers psupply =new Workers(3,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(psupply);
+                getPowerSupProducers().insertStart(workNode);
+                psupply.start();
+            }
+        }
+        if(type==4) {
+           for (int i = 1; i<=cantidad; i++) {
+                Workers graphicCard =new Workers(4,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(graphicCard);
+                getGraphicCardProducers().insertStart(workNode);
+                graphicCard.start();
+            }
+        }
+        
+        if(type==5) {
+            for (int i = 1; i<=cantidad; i++) {
+                Workers assembler =new Workers(5,this.getCompanyName(),dayDuration,this.getCompanyStorehouse(),getMutex());
+                Node workNode = new Node(assembler);
+                getAssemblers().insertStart(workNode);
+                assembler.start();
+            }
+        
         }
     }
 
+  
     
-    public void addAssembler(Assemblers assembler){
-        if((this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()) < this.maxWorkers){
-            Node integNode = new Node(assembler);
-            this.assemblers.insertEnd(integNode);
-            this.labels[6].setText(Integer.toString(this.assemblers.getlSize()));
-            //this.labels[13].setText(Integer.toString(this.assemblers.getlSize()));
-            
-            this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-            //this.labels[7].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-            assembler.start();
-        }
-    }
-
-    public void removeAssembler(){
-        if (this.assemblers.getlSize() > 1) {
-            Node tempNode;
-            Assemblers tempInte;
-
-            tempNode = this.assemblers.getLast();
-            tempInte = Assemblers.class.cast(tempNode.getData());
-            tempInte.setIsActive(false);
-            this.assemblers.delLast();
-            this.labels[6].setText(Integer.toString(this.assemblers.getlSize()));
-            //this.labels[13].setText(Integer.toString(this.assemblers.getlSize()));
-            this.labels[0].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-            //this.labels[7].setText(Integer.toString(this.motherboardProducers.getlSize() + this.CPUProducers.getlSize() + this.RAMProducers.getlSize() + this.powerSupProducers.getlSize() + this.graphicCardProducers.getlSize() + this.assemblers.getlSize()));
-        
-        }
-       
-    }
-    
-    
-    public boolean canDecreaseMaxDevs() {
-        int totalDevs = motherboardProducers.getlSize() + CPUProducers.getlSize() + RAMProducers.getlSize() + powerSupProducers.getlSize() + graphicCardProducers.getlSize() + assemblers.getlSize();
-        return totalDevs < maxWorkers;
-    }
-    
- /*
-    public void activateDevs(){
-        Node tempNode = this.motherboardProducers.getlFirst();
-        for(int i = 0; i < this.motherboardProducers.getlSize(); i++){
-            GameDeveloper tempWorker = GameDeveloper.class.cast(tempNode.getData()); 
-            tempWorker.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.CPUProducers.getlFirst();
-        for(int i = 0; i < this.CPUProducers.getlSize(); i++){
-            GameDeveloper tempWorker = GameDeveloper.class.cast(tempNode.getData()); 
-            tempWorker.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.RAMProducers.getlFirst();
-        for(int i = 0; i < this.RAMProducers.getlSize(); i++){
-            GameDeveloper tempWorker = GameDeveloper.class.cast(tempNode.getData()); 
-            tempWorker.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.powerSupProducers.getlFirst();
-        for(int i = 0; i < this.powerSupProducers.getlSize(); i++){
-            GameDeveloper tempWorker = GameDeveloper.class.cast(tempNode.getData()); 
-            tempWorker.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.graphicCardProducers.getlFirst();
-        for(int i = 0; i < this.graphicCardProducers.getlSize(); i++){
-            GameDeveloper tempWorker = GameDeveloper.class.cast(tempNode.getData()); 
-            tempWorker.start();
-            tempNode = tempNode.getpNext();
-        }
-    
-    }
-*/
-    
-    public void removeWorker(String workerType){
+    public void removeWorker(int workerType){
     
         Node tempNode;
         Workers tempWorker;
@@ -336,58 +269,61 @@ public class Company {
         
             
             
-            case "MotherboardProduction":
+            case 0:
                 
-                tempNode = this.motherboardProducers.getLast();
+                tempNode = this.motherboardProducers.getFirst();
                 tempWorker = Workers.class.cast(tempNode.getData());
                 tempWorker.setIsActive(false);
-                this.motherboardProducers.delLast();
-                this.labels[1].setText(Integer.toString(this.motherboardProducers.getlSize()));
-                //this.labels[8].setText(Integer.toString(this.motherboardProducers.getlSize()));
+                this.motherboardProducers.delFirst();
+           ;
                 
                 break;
                 
-            case "CPUProduction":
+            case 1:
                 
-                tempNode = this.CPUProducers.getLast();
+                tempNode = this.CPUProducers.getFirst();
                 tempWorker = Workers.class.cast(tempNode.getData());
                 tempWorker.setIsActive(false);
-                this.CPUProducers.delLast();
-                this.labels[2].setText(Integer.toString(this.CPUProducers.getlSize()));
-                //this.labels[9].setText(Integer.toString(this.CPUProducers.getlSize()));
+                this.CPUProducers.delFirst();
+    
                 
                 break;
                 
-            case "RAMProduction":
+            case 2:
                 
-                tempNode = this.RAMProducers.getLast();
+                tempNode = this.RAMProducers.getFirst();
                 tempWorker = Workers.class.cast(tempNode.getData());
                 tempWorker.setIsActive(false);
-                this.RAMProducers.delLast();
-                this.labels[3].setText(Integer.toString(this.RAMProducers.getlSize()));
-                //this.labels[10].setText(Integer.toString(this.RAMProducers.getlSize()));
+                this.RAMProducers.delFirst();
+          
+                break;
+                
+            case 3:
+                
+                tempNode = this.powerSupProducers.getFirst();
+                tempWorker = Workers.class.cast(tempNode.getData());
+                tempWorker.setIsActive(false);
+                this.powerSupProducers.delFirst();
+            
+                break;
+                
+            case 4:
+                
+                tempNode = this.graphicCardProducers.getFirst();
+                tempWorker = Workers.class.cast(tempNode.getData());
+                tempWorker.setIsActive(false);
+                this.graphicCardProducers.delFirst();
+                
                 
                 break;
                 
-            case "PowerSupplyProduction":
+            case 5:
                 
-                tempNode = this.powerSupProducers.getLast();
+                tempNode = this.assemblers.getFirst();
                 tempWorker = Workers.class.cast(tempNode.getData());
                 tempWorker.setIsActive(false);
-                this.powerSupProducers.delLast();
-                this.labels[4].setText(Integer.toString(this.powerSupProducers.getlSize()));
-                //this.labels[11].setText(Integer.toString(this.powerSupProducers.getlSize()));
-                
-                break;
-                
-            case "GraphicCardProduction":
-                
-                tempNode = this.graphicCardProducers.getLast();
-                tempWorker = Workers.class.cast(tempNode.getData());
-                tempWorker.setIsActive(false);
-                this.graphicCardProducers.delLast();
-                //this.labels[5].setText(Integer.toString(this.graphicCardProducers.getlSize()));
-                //this.labels[12].setText(Integer.toString(this.graphicCardProducers.getlSize()));
+                this.assemblers.delFirst();
+               
                 
                 break;
             

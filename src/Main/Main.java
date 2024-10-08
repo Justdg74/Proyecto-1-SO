@@ -4,7 +4,7 @@
  */
 package Main;
 
-import Dashboard.Dashboard;
+import Dashboards.Dashboard;
 /**
  *
  * @author digio

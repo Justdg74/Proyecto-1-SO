@@ -5,7 +5,7 @@
 package Classes;
 
 import javax.swing.JLabel;
-
+import Dashboards.Dashboard;
 /**
  *
  * @author alexi
@@ -21,15 +21,18 @@ public class Storehouse {
     private int RAMs;
     private int PowerSupplys;
     private int GraphicCards;
-    private int daysRemaining;
-    private int deadLine;
+    private int daysRemaining; //Dias entrega
+    private int deadLine; //Dias entrega original
     private int standardComputers;
     private int graphicCardComputers;
     private int standardCounter;
     private JLabel[] labels;
-    private String company;
+    private final String company;
     private double salary;
     private int dayspassed;
+    private double incomes;
+   private double costs; 
+   private double utilities;
 
 
     public Storehouse(String comp) {
@@ -45,6 +48,9 @@ public class Storehouse {
         this.company = comp;
         this.salary = 0;
         this.dayspassed =0;
+        this.incomes = 0;
+        this.costs = 0;
+        this.utilities = 0;
     }
     
     
@@ -126,6 +132,10 @@ public class Storehouse {
         this.standardCounter = standardCounter;
     }
     
+    public String getCompany() {
+        return company;
+    }
+    
     /**
      * 
      * funcion addToStorehouse
@@ -160,10 +170,10 @@ public class Storehouse {
      * 
      * Si el almacen esta lleno no se hace nada
      */
-    public void addToStorehouse(int amount, String workType)throws InterruptedException {
+    public void addToStorehouse(int amount, int workType)throws InterruptedException {
         switch (workType){
         
-            case "MotherboardProduction":
+            case 0: //MotherboardProduction
                 if (this.motherboard < 25){
                     if ((this.motherboard + amount) > 25){
                         this.motherboard += (25 - this.motherboard);
@@ -177,7 +187,7 @@ public class Storehouse {
                 }
                 break;
                 
-            case "CPUProduction":
+            case 1: //CPUProduction
                 if (this.CPUs < 20){
                     if ((this.CPUs + amount) > 20){
                         this.CPUs += (20 - this.CPUs);
@@ -191,7 +201,7 @@ public class Storehouse {
                 }
                 break;
                 
-            case "RAMProduction":
+            case 2: //RAMProduction
                 if (this.RAMs < 55){
                     if ((this.RAMs + amount) > 55){
                         this.RAMs += (55 - this.RAMs);
@@ -205,7 +215,7 @@ public class Storehouse {
                 }
                 break;
                 
-            case "PowerSupplyProduction":
+            case 3: //PowerSupplyProduction
                 if (this.PowerSupplys < 35){
                     if ((this.PowerSupplys + amount) > 35){
                         this.PowerSupplys += (35 - this.PowerSupplys);
@@ -220,7 +230,7 @@ public class Storehouse {
                 
                 break;
             
-            case "GraphicCardProduction":
+            case 4:  //GraphicCardProduction
                 if (this.GraphicCards < 10){
                     if ((this.GraphicCards + amount) > 10){
                         this.GraphicCards += (10 - this.GraphicCards);
@@ -358,11 +368,70 @@ public class Storehouse {
         return dayspassed;
     }
 
-    public void addDayspassed() {
-        this.dayspassed += 1;
-        this.labels[8].setText(Integer.toString(this.dayspassed));
-        
+    public void setDayspassed( int dayspassed) {
+        this.dayspassed = dayspassed;
         
     }
     
+    public void addDayspassed() {
+        this.dayspassed += 1;
+        this.labels[8].setText(Integer.toString(this.dayspassed));
+    
+    }
+    
+     public double getCosts(){
+        return costs;
+    }
+    
+    public void setCosts(double costs){
+        this.costs = costs;
+    }
+    
+    public double getIncomes(){
+        return incomes;
+    }
+    
+    public void setIncomes(double incomes){
+        this.incomes = incomes;
+    }
+    
+    public double getUtilities(){
+        return utilities;
+    }
+    
+    public void setUtilities(double utilities){
+        this.utilities = utilities;
+    }
+
+    
+     public void calcularGananciaS(float incomes){
+        if(this.company.compareTo("Apple") == 0){
+            setIncomes(getIncomes() + incomes*100000);
+            setUtilities(getIncomes() - getCosts());
+            Dashboard.getApple_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getApple_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
+            //Global.addNk((int) getUtilidad(), (Global.getDaycounter()-1)/2);
+        }else{
+            setIncomes(getIncomes() + incomes*180000);
+            setUtilities(getIncomes() - getCosts());
+            Dashboard.getMSI_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getMSI_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
+            //Global.addCn((int) getUtilidad(), (Global.getDaycounter()-1)/2);
+        }
+        System.out.println("GANANCIAS:"+ getCompany() + " " + getIncomes());
+    }
+    
+    public void calcularGananciaGC(float incomes){
+        if(this.company.compareTo("Apple") == 0){
+            setIncomes(getIncomes() + incomes*150000);
+            setUtilities(getIncomes() - getCosts());
+            Dashboard.getApple_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getApple_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
+        }else{
+            setIncomes(getIncomes() + incomes*250000);
+            setUtilities(getIncomes() - getCosts());
+            Dashboard.getMSI_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getMSI_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
+        }
+    }
 }

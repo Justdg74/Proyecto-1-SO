@@ -24,19 +24,18 @@ public class Workers extends Thread {
     private double hourlyRate;
     private double dailyOutput;
     private double accumulatedOutput;
-    private String workType;
+    private int workType;
     private boolean isActive = true;
     private String company; // Capcom or SquareEnix
     private int dayDuration;
     private Storehouse storehouse;
     private Semaphore mutex;
-    
-    public Workers(String workType, String company, int day, Storehouse storehouse, Semaphore m){
+    public Workers(int workType, String company, int day, Storehouse storehouse, Semaphore m){
         this.workType = workType;
         this.company = company;
         this.earnings = 0;
         this.accumulatedOutput = 0;
-        this.configureWorkerByComponent();
+        this.configureWorkerByComponent(); //Se realiza la configuracion de produccion que determina el salario y produccion por hora
         this.dayDuration = day;
         this.storehouse = storehouse;
         this.mutex = m;
@@ -47,13 +46,13 @@ public class Workers extends Thread {
         while (this.isActive) {
             try {
                 
-                this.produceComputerComponent();
+                this.produceComputerComponent(); //En base al daylyoutput calcula computadores producidos
                 this.mutex.acquire();
-                this.storehouse.addSalary(hourlyRate);
+                this.storehouse.addSalary(hourlyRate); //Se agregra el salario especificado en la configuracion
                 this.mutex.release();
                 sleep(this.dayDuration); 
             } catch (InterruptedException ex) {
-                System.out.println("Error in worker thread.");
+                System.out.println("Error in developer thread.");
             }
         }
         
@@ -67,27 +66,27 @@ public class Workers extends Thread {
     private void configureWorkerByComponent() {
         if (this.company.equals("Apple")) {
             switch (this.workType) {
-                case "MotherboardProduction":
+                case 0: //MotherboardProduction
                     this.hourlyRate = 20;
                     this.dailyOutput = 1.0/3; // 1 placa base cada 3 días
                     break;
-                case "CPUProduction":
+                case 1: //CPUProduction
                     this.hourlyRate = 26;
                     this.dailyOutput = 1.0/3; // 1 CPU cada 3 días
                     break;
-                case "RAMProduction":
+                case 2: //RAMProduction
                     this.hourlyRate = 40;
                     this.dailyOutput = 2; // 2 RAM cada día
                     break;
-                case "PowerSupplyProduction":
+                case 3: //PowerSupplyProduction
                     this.hourlyRate = 16;
                     this.dailyOutput = 5; // 5 fuentes de alimentacion cada día
                     break;
-                case "GraphicCardProduction":
+                case 4:  //GraphicCardProduction
                     this.hourlyRate = 34;
                     this.dailyOutput = 0.5; // 1 Tarjeta cada 2 días
                     break;
-                case "Assembler":
+                case 5: //Assembler
                     this.hourlyRate = 50;
                     this.dailyOutput = 0.5; // 1 computador cada 2 días
                     break;
@@ -97,27 +96,27 @@ public class Workers extends Thread {
             }
         } else if (this.company.equals("MSI")) {
             switch (this.workType) {
-                case "MotherboardProduction":
+                case 0: //MotherboardProduction
                     this.hourlyRate = 20;
                     this.dailyOutput = 0.25; // 1 placa cada 4 días
                     break;
-                case "CPUProduction":
+                case 1: //CPUProduction
                     this.hourlyRate = 26;
                     this.dailyOutput = 0.25; // 1 CPU cada 4 días
                     break;
-                case "RAMProduction":
+                case 2: //RAMProduction
                     this.hourlyRate = 40;
                     this.dailyOutput = 1; // 1 RAM cada día
                     break;
-                case "PowerSupplyProduction":
+                case 3: //PowerSupplyProduction
                     this.hourlyRate = 16;
                     this.dailyOutput = 5; // 5 fuentes de alimentacion cada día
                     break;
-                case "GraphicCardProduction":
+                case 4: //GraphicCardProduction
                     this.hourlyRate = 34;
                     this.dailyOutput = 0.5; // 1 Tarjeta Grafica cada 2 días
                     break;
-                case "Assembler":
+                case 5: //Assembler
                     this.hourlyRate = 50;
                     this.dailyOutput = 0.5; // 1 computador cada 2 días
                     break;
@@ -142,7 +141,14 @@ public class Workers extends Thread {
             try {
                 int roundAcc = (int) Math.floor(this.accumulatedOutput);
                 this.mutex.acquire(1);
-                this.storehouse.addToStorehouse(roundAcc, this.workType);
+                if(this.workType==5) {
+                if(this.storehouse.canAssembleComputer()) {
+                this.storehouse.assembleComputer();
+                }
+                 //se crea un computador
+            }
+            else {
+                this.storehouse.addToStorehouse(roundAcc, this.workType);}
                 this.mutex.release();
                 this.accumulatedOutput = 0;
             } catch (InterruptedException ex) {
@@ -201,11 +207,11 @@ public class Workers extends Thread {
         this.configureWorkerByComponent(); // Reconfigure based on the new company
     }
     
-    public String getWorkType() {
+    public int getWorkType() {
         return this.workType;
     }
 
-    public void setWorkType(String workType) {
+    public void setWorkType(int workType) {
         this.workType = workType;
         configureWorkerByComponent(); //  llamar a este método aquí para reconfigurar automáticamente al desarrollador cuando cambies su componente.
     }

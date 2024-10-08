@@ -4,111 +4,182 @@
  */
 package Classes;
 
-import java.util.Random;
+import Dashboards.GlobalUI;
+//import static Dashboards.GlobalUI.getDaycounter;
+import Dashboards.Dashboard;
+//import static Interfaces.Ventana.getCn_Pm_State;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 
 /**
  *
- * @author digio
+ * @author alexi
  */
-public class ProjectManager extends Thread{
-    private int salary;
+public class ProjectManager extends Thread {
+    private int sueldoph;
     private int dayDuration;
-    private int hourDuration;
-    private int minDuration;
-    private  Storehouse storehouse;
+    private float salarioacc=0;
+    private int horas; //pasar la duracion de un dia a una hora, se divide entre 24 
     private Semaphore mutex;
-    private String currentState;
-    private JLabel label;
-    
-    
-    public ProjectManager(int day, int hour, int min ,Storehouse storehouse, Semaphore m, JLabel label) {
-        this.salary = 40;
-        this.dayDuration = day;
-        this.hourDuration = hour;
-        this.minDuration = min;
-        this.storehouse = storehouse;
-        this.mutex = m;
-        this.currentState = "Trabajando";
-        this.label = label;
+    private Storehouse storehouse;
+    private String estado;
+    private int dineroDescontado = 0;
+    private int faltas = 0;
+
+    public ProjectManager(int sueldoph, int dayDuration, Semaphore mutex, Storehouse storehouse) {
+        this.sueldoph = sueldoph;
+        this.dayDuration = dayDuration;
+        this.mutex = mutex;
+        this.estado="Trabajando";
+        this.horas=this.dayDuration/24;
+        this.storehouse=storehouse;
     }
     
     @Override
-    public void run(){
-        while(true){
-            try{
-                //Al iniciar el dia, inicia su rutina de trabajar y alternar viendo anime
-                susTime();                
-                /*Segun el tiempo que pasa viendo anime, espera el resto para el siguiente dia y baja en 1 el contador
-                de dias restantes*/
-                if (((this.hourDuration/2)*32) + (this.hourDuration*8) < this.dayDuration){
-                    sleep((this.hourDuration*8) + (this.dayDuration - (((this.hourDuration/2)*32) + (this.hourDuration*8))));
-                    this.mutex.acquire(1);
-                    countDay();
-                    this.mutex.release();
-                }else{
-                    sleep(this.hourDuration*8);
-                    this.mutex.acquire(1);
-                    countDay();
-                    this.mutex.release();
+    public void run() {
+        
+        while(true) {
+            //primero se hace que pasen las 16 horas
+            for (int i = 1; i <= 16; i++) {
+                try {
+                      this.estado="Trabajando";
+                      changeStateText();
+                      sleep(this.horas/2);//espera media hora
+                      this.estado="Viendo One Piece";
+                       changeStateText();
+                       sleep(this.horas/2);
+                       
+//                    this.estado="Viendo One Piece";
+//                    changeStateText();
+//                   // System.out.println(this.estado);
+//                    sleep(this.horas/2);//espera media hora
+//                    
+//                    this.estado="Trabajando"; //paso la media hora y trabaja de nuevo
+//                    changeStateText();
+//                    //System.out.println(this.estado);
+//                    sleep(this.horas/2);//espera media hora
+//                    
+//                    this.estado="Viendo One Piece";
+//                    changeStateText();
+                    
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("error en pm en las 16 horas "+this.storehouse.getCompany());
                 }
-                
-                
-                
-                
-            }catch (InterruptedException ex){
-                System.out.println(ex);
-                        }
-        }
-    }
-    
-    
-     public void susTime() {
-        for (int i = 1; i <= 16; i++){
+            }
+            this.estado="Trabajando";
+            changeStateText();
+            
             try {
-                this.currentState = "Viendo Anime";
-                this.label.setText(this.currentState);
-                sleep(this.hourDuration/2);  
+                //ya pasaron las 16 horas, ahora trabaja durante 8 horas
+                sleep(this.horas*8);//pasan las 8 horas y baja el contador
+                this.mutex.acquire();
+                if(this.storehouse.getDaysRemaining() > 0){
+                this.storehouse.setDaysRemaining(this.storehouse.getDaysRemaining()-1); //baja en 1 el contador de dias hasta la entrega
+                Dashboard.getApple_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
+                Dashboard.getMSI_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
+                }
+                GlobalUI.setDaycounter(GlobalUI.getDaycounter() + 1);
+                //ahora cobra su dia de trabajo
+                this.storehouse.setCosts(this.storehouse.getCosts()+this.sueldoph*24); //al costo le sumo lo que gano el empleado ese dia
+                this.mutex.release();
+                this.salarioacc+=this.sueldoph*24;
                 
-                 
-                this.currentState = "Trabajando";
-                this.label.setText(this.currentState);
-                sleep(this.hourDuration/2);
-                
+                //System.out.println("dias hasta la entrega "+this.drive.getDiasEntrega());
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("error en pm en las 8 horas "+this.storehouse.getCompany());
             }
-                    
-                }
-}
-     
-      public String getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(String currentState) {
-        this.currentState = currentState;
-    }
-
-    public JLabel getLabel() {
-        return label;
-    }
-
-    public void setLabel(JLabel label) {
-        this.label = label;
+            
+            
+        
+        }
+    
     }
     
-    public void countDay(){
-        this.storehouse.setDaysRemaining(this.storehouse.getDaysRemaining() - 1);
-        this.storehouse.addSalary(salary);
-        daysPassed();
+    public void changeStateText(){
+        if(this.storehouse.getCompany().compareTo("Apple") == 0){
+            Dashboard.getApple_Pm_State().setText(this.estado);
+        }else{
+            Dashboard.getMSI_Pm_State().setText(this.estado);
+        }        
     }
     
-    public void daysPassed(){
-        this.storehouse.addDayspassed();
+    
+
+    public int getSueldoph() {
+        return sueldoph;
     }
+
+    public void setSueldoph(int sueldoph) {
+        this.sueldoph = sueldoph;
+    }
+
+    public int getDayDuration() {
+        return dayDuration;
+    }
+
+    public void setDayDuration(int dayDuration) {
+        this.dayDuration = dayDuration;
+    }
+
+    public float getSalarioacc() {
+        return salarioacc;
+    }
+
+    public void setSalarioacc(float salarioacc) {
+        this.salarioacc = salarioacc;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
+
+    public Semaphore getMutex() {
+        return mutex;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
+    }
+
+    public Storehouse getStorehouse() {
+        return storehouse;
+    }
+
+    public void setDrive(Storehouse storehouse) {
+        this.storehouse = storehouse;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public int getDineroDescontado(){
+        return dineroDescontado;
+    }
+    
+    public void setDineroDescontado(int dineroDescontado){
+        this.dineroDescontado = dineroDescontado;
+    }
+    
+    public int getFaltas(){
+        return faltas;
+    }
+    
+    public void setFaltas(int faltas){
+        this.faltas = faltas;
+    }
+    
+   
 
 }

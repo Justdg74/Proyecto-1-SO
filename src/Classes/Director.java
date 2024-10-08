@@ -4,6 +4,7 @@
  */
 package Classes;
 
+import Dashboards.Dashboard;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -15,109 +16,241 @@ import javax.swing.JLabel;
  *
  * @author alexi
  */
-public class Director {
-    private Storehouse storehouse;
-    private Semaphore mutex;
+public class Director extends Thread {
+    private int sueldoph; //Sueldo por Hora del Director
+    private Semaphore mutex; // Semáforo
+    private int dayDuration; //Duración del día
+    private float salarioAcc = 0; // Salario acumulado
+    private Storehouse storehouse; //El Almacen común de toda la compañía, necesario para el contador de días
+    private String estado; // Qué esta haciendo
+    private int horaAleatoria; //La hora aleatoria para revisar al PM
+    private double horas; //Conversión del día completo en horas
     private ProjectManager pm;
-    private boolean paused;
-    private int minuteDuration;
-    private boolean wasLazy;
-    private int pmPenalties;
-    private JLabel label;
-    private JLabel faultLabel;
     
-    public Director(Storehouse storehouse, Semaphore m, ProjectManager proj, int min, JLabel label, JLabel fault){
+     public Director(int sueldoph, int dayDuration, Semaphore mutex, Storehouse storehouse, ProjectManager pm){
+        this.sueldoph = sueldoph;
+        this.dayDuration = dayDuration;
+        this.mutex = mutex;
         this.storehouse = storehouse;
-        this.mutex = m;
-        this.pm = proj;
-        this.minuteDuration = min;
-        this.paused = false;
-        this.wasLazy = false;
-        this.pmPenalties = 0;
-        this.label = label;
-        this.faultLabel = fault;
+        this.estado = "Trabajando";
+        this.horaAleatoria = 0;
+        this.horas = this.dayDuration/24;
+        this.pm = pm;
     }
     
-    @Override
-    public void run(){
-        try {
-            //Se toman pausas cortas entre ejecucion
-            sleep(10);
-            while(true){
-                //Si ya es la hora de revisar el project manager, el condicional sera cierto y se ejecuta el codigo correspondiente
-                if(!this.paused){
+     public int getSueldoph(){
+        return sueldoph;
+    }
+    
+    public void setSueldoph(int sueldoph){
+        this.sueldoph = sueldoph;
+    }
+    
+    public Semaphore getMutex(){
+        return mutex;
+    }
+    
+    public void setMutex(Semaphore mutex){
+        this.mutex = mutex;
+    }
+    
+    public int getDayDuration(){
+        return dayDuration;
+    }
+    
+    public void setDayDuration(int dayDuration){
+        this.dayDuration = dayDuration;
+    }
+    
+    public float getSalarioAcc(){
+        return salarioAcc;
+    }
+    
+    public void setSalarioAcc(float salarioAcc){
+        this.salarioAcc = salarioAcc;
+    }
+    
+    public Storehouse getStorehouse(){
+        return storehouse;
+    }
+    
+    public void setDrive(Storehouse drive){
+        this.storehouse = drive;
+    }
+    
+    public String getEstado(){
+        return estado;
+    }
+    
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
+    
+    public int getHoraAleatoria(){
+        return horaAleatoria;
+    }
+    
+    public void setHoraAleatoria(int horaAleatoria){
+        this.horaAleatoria = horaAleatoria;
+    }
+    
+    public double getHoras(){
+        return horas;
+    }
+    
+    public void setHoras(int horas){
+        this.horas = horas;
+    }
+    
+    public ProjectManager getProjectManager(){
+        return pm;
+    }
+    
+    public void setProjectManager(ProjectManager pm){
+        this.pm = pm;
+    }
+    
+   @Override
+   public void run(){
+        while(true){
+     
+            if(this.storehouse.getDaysRemaining() <= 0){
+                try{
+                    this.estado = "Entregando computadoras";
+                    changeStateText(); //??????? Porque no se cambia a la cosa??????
+                    //System.out.println("Estado: "+this.estado);
+                    //System.out.println(this.estado);
+                    sleep(this.dayDuration);      
+                    this.mutex.acquire(); // Wait, empieza la parte crítica
                     
-                    //Si el pm no esta trabajando y aun no se le ha colocado una falta, se procede a colocarle una falta
-                    if(!"Trabajando".equals(this.pm.getCurrentState()) && !this.wasLazy){
-                        this.mutex.acquire(1);
-                        faultPM();
-                        this.mutex.release();
+                    this.storehouse.setDaysRemaining(this.storehouse.getDeadLine());//Reinicia los días requeridos
+                    Dashboard.getApple_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
+                    Dashboard.getMSI_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
+                    //Aquí va una función para calcular la ganancia, en donde se agarran los caps y se multiplica y se añade a estudio, pero esa conexión no está hecha todavía
+                    
+                    if(this.storehouse.getStandardComputers() <= 0 && this.storehouse.getGraphicCardComputers() <= 0){
+                        System.out.println("NO SE ENTREGO NINGUN CAPITULO");
+                    }else{
+                        if(this.storehouse.getStandardComputers() > 0){
+                        this.storehouse.calcularGananciaS(this.storehouse.getStandardComputers());
+                        this.storehouse.setStandardComputers(0);
+                        //Ventana.getNk_Cont_Caps().setText(Integer.toString(this.storehouse.getStandardComputers()));
+                        //Ventana.getCn_Cont_Caps().setText(Integer.toString(this.storehouse.getStandardComputers()));
+                        
                     }
-                    
-                sleep(5);
-                    
-                    
-                }else{
-                    try {
-                        sleep(this.minuteDuration);
-                    } catch (InterruptedException ex) {
+                        if(this.storehouse.getGraphicCardComputers() > 0){
+                            this.storehouse.calcularGananciaGC(this.storehouse.getStandardComputers());
+                            this.storehouse.setGraphicCardComputers(0);
+                            //Ventana.getNk_Cont_PW().setText(Integer.toString(this.storehouse.getGraphicCardComputers()));
+                            //Ventana.getCn_Cont_PW().setText(Integer.toString(this.storehouse.getGraphicCardComputers()));
+                        }
+                    }                 
+                                        
+                    this.mutex.release(); //Signal, termina la parte crítica
+                }catch(InterruptedException ex){
                         Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                        System.out.println("error en director en run cuando entrega "+this.storehouse.getCompany());
+                }                
+            }else if(this.storehouse.getDaysRemaining()>0) {
+               
+                //Acá abajo está todo el código de el director cuando NO esta entregando caps
+                Random random = new Random();
+                while((this.horaAleatoria=random.nextInt(24))==0) {
+                    this.horaAleatoria=random.nextInt(24);
                 }
-            }
-            
-               } catch (InterruptedException ex) {
-            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+                //horaAleatoria = 16;
+                //System.out.println("Diasss "+this.drive.getDiasEntrega()+" "+this.drive.getEstudio());
+                //System.out.println("HORA ALEATORIA: "+ this.horaAleatoria+ " "+this.drive.getEstudio());
+                //Aquí van a pasar las 24 horas
+                for(int i = 1; i <= 24; i++){
+                    try{                        
+                        //System.out.println(this.estado);
+                        this.estado = "Trabajando";
+                        changeStateText();
+                        //System.out.println("Estado: "+this.estado);
+                        if(i == this.horaAleatoria){
+                            //System.out.println(i+" numero "+"hora aleatoria: "+this.horaAleatoria);
+                            this.estado = "Revisando al Project Manager";
+                            changeStateText();
+                            if(this.horaAleatoria <=16){
+                                //System.out.println("LO ATRAPE SI O SI "+this.drive.getEstudio());                            
+                            }
+                            mutex.acquire();
+                            //System.out.println(pm.getEstado()+" el pm esta "+ drive.getEstudio());
+                            boolean continuar=checkPm();
+                            //System.out.println(pm.getEstado()+" el pm esta");
+                            if(!continuar){
+                            sleep((long) (this.horas/(60/17)));
+                           // System.out.println(pm.getEstado()+" el pm esta "+ drive.getEstudio());
+                            continuar=checkPm();
+                            //System.out.println(pm.getEstado()+" el pm esta");
+                            }
+                            if(!continuar) {
+                            sleep((long) (this.horas/(60/17)));
+                            //System.out.println(pm.getEstado()+" el pm esta "+ drive.getEstudio());
+                            checkPm();
+                            }
+                            mutex.release();
+                            
+                            
+                        }
+                        //System.out.println("horaaa "+this.horas);
+                        sleep((long) (this.horas/(12/7))); //Se llevan los 35 minutos que se requieren
+                    }catch(InterruptedException ex){
+                        Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("error en director en run cuando no entrega "+this.storehouse.getCompany());
+                    }
+                }                
+            }            
+            obtenerSalario();            
         }
-
-    
+    }
+   
+    public void changeStateText(){
+        if(this.storehouse.getCompany().compareTo("Apple") == 0){
+            Dashboard.getApple_Director_State().setText(this.estado);
+        }else{
+            Dashboard.getMSI_Director_State().setText(this.estado);
+        }        
+    }  
+        
+    public void obtenerSalario() {
+        try{
+            this.mutex.acquire();
+            this.storehouse.setCosts(this.storehouse.getCosts()+this.sueldoph*24); //al costo le sumo lo que gano el empleado ese dia            
+            this.mutex.release();
+            this.salarioAcc+=this.sueldoph*24;
+            
+        }catch(InterruptedException ex) {
+                Logger.getLogger(Workers.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error!!! del Director en obtenerSalario ");
+        }
+            
     }
     
-     public boolean isPaused() {
-        return paused;
-    }
-
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
-
-    public boolean isWasLazy() {
-        return wasLazy;
-    }
-
-    public void setWasLazy(boolean wasLazy) {
-        this.wasLazy = wasLazy;
-    }
-
-    public int getPmPenalties() {
-        return pmPenalties;
-    }
-
-    public void setPmPenalties(int pmPenalties) {
-        this.pmPenalties = pmPenalties;
-    }
- 
-    /**
-     * Funcion para registrar fallas del pm
-     */
-    public void faultPM(){
-        /**
-         * Se modifica el booleano que indica que ya se penalizo al pm
-         * Aumentan en 1 las penalizaciones para este deadline y se reduce su salario en 100
-         */
-        this.wasLazy = true;
-        this.pmPenalties += 1;
-        this.label.setText(Integer.toString(this.pmPenalties));
-        this.faultLabel.setText(Integer.toString(this.pmPenalties*100));
-        this.storehouse.setSalary(this.storehouse.getSalary() - (100/1000));
-    }
-
-    public JLabel getFaultLabel() {
-        return faultLabel;
-    }
-
-    public void setFaultLabel(JLabel faultLabel) {
-        this.faultLabel = faultLabel;
+    public void changeFailText(){
+        if(this.storehouse.getCompany().compareTo("Apple") == 0){
+//            System.out.println("Atrapado el de Nickelodeon!");
+            Dashboard.getApple_Fail_Counter().setText(Integer.toString(this.getProjectManager().getFaltas()));
+            Dashboard.getApple_Discount_Counter().setText(Integer.toString(this.getProjectManager().getDineroDescontado()) +"$");
+        }else{
+//            System.out.println("Atrapado el de Cartoon Network!");
+            Dashboard.getMSI_Fail_Counter().setText(Integer.toString(this.getProjectManager().getFaltas()));
+            Dashboard.getMSI_Discount_Counter().setText(Integer.toString(this.getProjectManager().getDineroDescontado()) +"$");
+        }     
     }
     
+    public boolean checkPm(){
+        if(this.getProjectManager().getEstado().equals("Viendo One Piece")){
+                //System.out.println("ATRAPADO!!! " + this.drive.getEstudio());
+                this.getProjectManager().setFaltas(this.getProjectManager().getFaltas() + 1);
+                this.getProjectManager().setDineroDescontado(this.getProjectManager().getDineroDescontado() + 100);
+                this.getProjectManager().setSalarioacc(this.getProjectManager().getSalarioacc() - 100);
+                changeFailText();
+                return true;
+        } else{
+            return false;
+        //System.out.println("Mosca pues");
+        }
+    }
 }

@@ -6,6 +6,7 @@ package Classes;
 
 import javax.swing.JLabel;
 import Dashboards.Dashboard;
+import Dashboards.GlobalUI;
 /**
  *
  * @author alexi
@@ -409,14 +410,16 @@ public class Storehouse {
             setIncomes(getIncomes() + incomes*100000);
             setUtilities(getIncomes() - getCosts());
             Dashboard.getApple_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getApple_Loss_Counter().setText(Integer.toString((int) getCosts())+"$");
             Dashboard.getApple_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
-            //Global.addNk((int) getUtilidad(), (Global.getDaycounter()-1)/2);
+            GlobalUI.addApple((int) getUtilities(), (GlobalUI.getDaycounter()-1)/2);
         }else{
             setIncomes(getIncomes() + incomes*180000);
             setUtilities(getIncomes() - getCosts());
             Dashboard.getMSI_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getApple_Loss_Counter().setText(Integer.toString((int) getCosts())+"$");
             Dashboard.getMSI_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
-            //Global.addCn((int) getUtilidad(), (Global.getDaycounter()-1)/2);
+            GlobalUI.addMSI((int) getUtilities(), (GlobalUI.getDaycounter()-1)/2);
         }
         System.out.println("GANANCIAS:"+ getCompany() + " " + getIncomes());
     }
@@ -426,11 +429,13 @@ public class Storehouse {
             setIncomes(getIncomes() + incomes*150000);
             setUtilities(getIncomes() - getCosts());
             Dashboard.getApple_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getMSI_Loss_Counter().setText(Integer.toString((int) getCosts())+"$");
             Dashboard.getApple_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
         }else{
             setIncomes(getIncomes() + incomes*250000);
             setUtilities(getIncomes() - getCosts());
             Dashboard.getMSI_Gain_Counter().setText(Integer.toString((int) getIncomes())+"$");
+            Dashboard.getMSI_Loss_Counter().setText(Integer.toString((int) getCosts())+"$");
             Dashboard.getMSI_Utility_Counter().setText(Integer.toString((int) ((int) getIncomes() - getCosts()))+"$");
         }
     }

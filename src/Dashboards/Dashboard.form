@@ -551,12 +551,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="Apple_Fail_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                                  <Component id="Apple_Fail_Counter" pref="93" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Apple_Discount_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="Apple_Discount_Counter" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -735,13 +735,13 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Apple_Utility_Counter" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Apple_Deadline_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="Apple_Gain_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="Apple_Loss_Counter" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="Apple_Gain_Counter" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="Apple_Loss_Counter" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Apple_Utility_Counter" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1542,16 +1542,16 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel59" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MSI_Fail_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="jLabel59" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="MSI_Fail_Counter" min="-2" pref="59" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   <Component id="jLabel60" min="-2" pref="145" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MSI_Discount_Counter" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="MSI_Discount_Counter" pref="59" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1708,30 +1708,31 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jLabel68" alignment="0" pref="66" max="32767" attributes="0"/>
                                       <Component id="jLabel67" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="MSI_Loss_Counter" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="MSI_Utility_Counter" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="MSI_Loss_Counter" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <Component id="MSI_Utility_Counter" min="-2" pref="82" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel66" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="MSI_Gain_Counter" min="-2" pref="43" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel65" min="-2" pref="122" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel65" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                      <Component id="jLabel66" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MSI_Deadline_Counter" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="MSI_Gain_Counter" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="MSI_Deadline_Counter" min="-2" pref="43" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="76" max="32767" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1783,7 +1784,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="GANACIAS:"/>
+                    <Property name="text" type="java.lang.String" value="GANANCIAS:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel67">

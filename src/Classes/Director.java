@@ -129,7 +129,7 @@ public class Director extends Thread {
                     //Aquí va una función para calcular la ganancia, en donde se agarran los caps y se multiplica y se añade a estudio, pero esa conexión no está hecha todavía
                     
                     if(this.storehouse.getStandardComputers() <= 0 && this.storehouse.getGraphicCardComputers() <= 0){
-                        System.out.println("NO SE ENTREGO NINGUN CAPITULO");
+                        System.out.println("NO SE ENTREGO NINGUNA COMPUTADORA");
                     }else{
                         if(this.storehouse.getStandardComputers() > 0){
                         this.storehouse.calcularGananciaS(this.storehouse.getStandardComputers());

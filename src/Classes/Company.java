@@ -44,7 +44,7 @@ public class Company {
     public Company(int maxWorkers, String company){
         this.mutex = new Semaphore(1);
         this.companyStorehouse = new Storehouse(company);
-        
+ 
         this.motherboardProducers = new LinkedList();
         this.CPUProducers = new LinkedList();
         this.RAMProducers = new LinkedList();

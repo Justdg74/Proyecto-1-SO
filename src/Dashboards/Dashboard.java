@@ -64,10 +64,10 @@ public class Dashboard extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);        
         
          //Se pasan los labels correspondientes a cada compañia y sus drives para manipular la interfaz        
-        JLabel[] appStorehouseLabels = {Almacen_Placas_Apple, Almacen_CPU_Apple, Almacen_RAM_Apple, Almacen_FuenteA_Apple, Almacen_Tarjetas_Apple, Apple_Deadline_Counter, Apple_Cont_SinTarjeta, Apple_Cont_ConTarjeta, Cont_Days_Apple};
+        JLabel[] appStorehouseLabels = {Almacen_Placas_Apple, Almacen_CPU_Apple, Almacen_RAM_Apple, Almacen_FuenteA_Apple, Almacen_Tarjetas_Apple, Apple_Deadline_Counter, Apple_Cont_SinTarjeta, Apple_Cont_ConTarjeta};
         
         
-        JLabel[] msiStorehouseLabels = {Almacen_Placas_MSI, Almacen_CPU_MSI, Almacen_RAM_MSI, Almacen_FuenteA_MSI, Almacen_Tarjetas_MSI, MSI_Deadline_Counter, MSI_Cont_SinTarjeta, MSI_Cont_ConTarjeta, Cont_Days_MSI};  
+        JLabel[] msiStorehouseLabels = {Almacen_Placas_MSI, Almacen_CPU_MSI, Almacen_RAM_MSI, Almacen_FuenteA_MSI, Almacen_Tarjetas_MSI, MSI_Deadline_Counter, MSI_Cont_SinTarjeta, MSI_Cont_ConTarjeta};  
         
         
         
@@ -101,7 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
     public JLabel getAlmacen_CPU_MSI() {
         return Almacen_CPU_MSI;
     }
-
+    
     public void setAlmacen_CPU_MSI(JLabel Almacen_CPU_MSI) {
         this.Almacen_CPU_MSI = Almacen_CPU_MSI;
     }
@@ -330,7 +330,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.MSI_Utility_Counter = MSI_Utility_Counter;
     }
         
-        
+ 
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -347,7 +347,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Cont_Deadline = new javax.swing.JSpinner();
-        SaveButton = new javax.swing.JButton();
         Cont_Day_Duration = new javax.swing.JSpinner();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -356,6 +355,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         LogoMSI = new javax.swing.JLabel();
         IniciarSimulacion = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
         Apple = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -392,9 +392,7 @@ public class Dashboard extends javax.swing.JFrame {
         Apple_Loss_Counter = new javax.swing.JLabel();
         Apple_Utility_Counter = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel52 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        Cont_Days_Apple = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -418,11 +416,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         Apple_Cont_SinTarjeta = new javax.swing.JLabel();
         Apple_Cont_ConTarjeta = new javax.swing.JLabel();
+        AppleIcon = new javax.swing.JLabel();
         MSI = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        Cont_Days_MSI = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -480,13 +475,17 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel82 = new javax.swing.JLabel();
         MSI_Cont_SinTarjeta = new javax.swing.JLabel();
         MSI_Cont_ConTarjeta = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        IconMSI = new javax.swing.JLabel();
         Grafico = new javax.swing.JPanel();
-        panelChart = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        panelChart = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -514,11 +513,7 @@ public class Dashboard extends javax.swing.JFrame {
         Inicio.add(Cont_Deadline);
         Cont_Deadline.setBounds(180, 440, 70, 30);
 
-        SaveButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        SaveButton.setText("GUARDAR");
-        Inicio.add(SaveButton);
-        SaveButton.setBounds(630, 430, 140, 40);
-
+        Cont_Day_Duration.setValue(1);
         Cont_Day_Duration.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 Cont_Day_DurationStateChanged(evt);
@@ -561,7 +556,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         Inicio.add(jPanel7);
-        jPanel7.setBounds(0, 0, 410, 500);
+        jPanel7.setBounds(0, 0, 440, 500);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -579,14 +574,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        SaveButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SaveButton.setText("GUARDAR");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IniciarSimulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
@@ -595,7 +589,13 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addComponent(LogoMSI)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IniciarSimulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,11 +606,13 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(LogoMSI, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IniciarSimulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         Inicio.add(jPanel8);
-        jPanel8.setBounds(410, 0, 390, 500);
+        jPanel8.setBounds(440, 0, 430, 500);
 
         jTabbedPane1.addTab("Inicio", Inicio);
 
@@ -731,7 +733,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(Cont_Trabajadores_Apple))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(Cont_Placas_Apple, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -755,11 +757,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29)
                     .addComponent(Cont_Ensamblador_Apple, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         Apple.add(jPanel1);
-        jPanel1.setBounds(10, 210, 360, 300);
+        jPanel1.setBounds(10, 210, 360, 280);
 
         jPanel2.setBackground(new java.awt.Color(7, 121, 131));
 
@@ -821,7 +823,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Apple_Fail_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addComponent(Apple_Fail_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -851,7 +853,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         Apple.add(jPanel2);
-        jPanel2.setBounds(10, 60, 480, 140);
+        jPanel2.setBounds(10, 60, 510, 140);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -909,7 +911,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(Apple_Gain_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(Apple_Loss_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Apple_Utility_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,21 +936,13 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         Apple.add(jPanel3);
-        jPanel3.setBounds(500, 60, 290, 140);
+        jPanel3.setBounds(530, 60, 330, 140);
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel52.setText("DIAS TOTALES:");
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("APPLE");
-
-        Cont_Days_Apple.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Cont_Days_Apple.setForeground(new java.awt.Color(255, 255, 255));
-        Cont_Days_Apple.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -957,24 +951,13 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
-                .addComponent(jLabel52)
-                .addGap(18, 18, 18)
-                .addComponent(Cont_Days_Apple, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel37))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel52)
-                            .addComponent(Cont_Days_Apple))))
+                .addContainerGap()
+                .addComponent(jLabel37)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1175,65 +1158,30 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel36)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel38)
-                    .addComponent(Apple_Cont_SinTarjeta))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Apple_Cont_SinTarjeta))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel38)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel39)
-                    .addComponent(Apple_Cont_ConTarjeta))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Apple_Cont_ConTarjeta)
+                    .addComponent(jLabel39))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Apple.add(jPanel6);
-        jPanel6.setBounds(380, 400, 200, 110);
+        jPanel6.setBounds(380, 400, 200, 90);
+
+        AppleIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-apple-256.png"))); // NOI18N
+        Apple.add(AppleIcon);
+        AppleIcon.setBounds(580, 230, 250, 240);
 
         jTabbedPane1.addTab("Apple", Apple);
 
         MSI.setBackground(new java.awt.Color(51, 51, 51));
-
-        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel55.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel55.setText("MSI");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("DIAS TOTALES:");
-
-        Cont_Days_MSI.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Cont_Days_MSI.setForeground(new java.awt.Color(255, 255, 255));
-        Cont_Days_MSI.setText("0");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Cont_Days_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(Cont_Days_MSI))))
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
 
         jPanel10.setBackground(new java.awt.Color(255, 102, 102));
 
@@ -1296,7 +1244,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MSI_Discount_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
+                        .addComponent(MSI_Discount_Counter, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -1378,7 +1326,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(MSI_Gain_Counter, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MSI_Deadline_Counter, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1399,7 +1347,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel68)
                     .addComponent(MSI_Utility_Counter))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 0, 102));
@@ -1483,30 +1431,29 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                 .addComponent(Cont_Tarjetas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Cont_Ensamblador_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addComponent(Cont_RAM_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel86, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cont_Placas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cont_CPU_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel12Layout.createSequentialGroup()
                             .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Cont_FuenteA_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Cont_Placas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel86, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Cont_CPU_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Cont_RAM_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cont_Trabajadores_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -1514,35 +1461,35 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel73)
                     .addComponent(Cont_Trabajadores_MSI))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cont_Placas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel85))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel85)
+                    .addComponent(Cont_Placas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cont_CPU_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel86))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel86)
+                    .addComponent(Cont_CPU_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Cont_RAM_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel87))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cont_FuenteA_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel88))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cont_Tarjetas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel89))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel89)
+                    .addComponent(Cont_Tarjetas_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cont_Ensamblador_MSI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel90))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         jPanel13.setBackground(new java.awt.Color(255, 153, 102));
@@ -1730,65 +1677,68 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel82)
                     .addComponent(MSI_Cont_ConTarjeta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setText("MSI");
+
+        IconMSI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/IconMSI (2).png"))); // NOI18N
 
         javax.swing.GroupLayout MSILayout = new javax.swing.GroupLayout(MSI);
         MSI.setLayout(MSILayout);
         MSILayout.setHorizontalGroup(
             MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MSILayout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MSILayout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGap(12, 12, 12)
+                        .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MSILayout.createSequentialGroup()
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(IconMSI, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MSILayout.createSequentialGroup()
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(MSILayout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         MSILayout.setVerticalGroup(
             MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MSILayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(MSILayout.createSequentialGroup()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(MSILayout.createSequentialGroup()
+                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(134, 134, 134))
+                        .addComponent(IconMSI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MSI", MSI);
 
-        panelChart.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setLayout(null);
 
-        javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
-        panelChart.setLayout(panelChartLayout);
-        panelChartLayout.setHorizontalGroup(
-            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 749, Short.MAX_VALUE)
-        );
-        panelChartLayout.setVerticalGroup(
-            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-
-        jLabel11.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
-        jLabel11.setText("GRÁFICO DE GANANCIAS");
+        jPanel18.setBackground(new java.awt.Color(51, 51, 51));
 
         jPanel15.setBackground(new java.awt.Color(255, 0, 0));
 
@@ -1816,520 +1766,299 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 29, Short.MAX_VALUE)
         );
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel12.setText("MSI");
+        panelChart.setBackground(new java.awt.Color(204, 204, 204));
+        panelChart.setForeground(new java.awt.Color(255, 255, 255));
+        panelChart.setLayout(new java.awt.BorderLayout());
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel13.setText("Apple");
+        jLabel18.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("GRÁFICO DE GANANCIAS");
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Apple");
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("MSI");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19))
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel20)
+                        .addComponent(jLabel18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout GraficoLayout = new javax.swing.GroupLayout(Grafico);
         Grafico.setLayout(GraficoLayout);
         GraficoLayout.setHorizontalGroup(
             GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GraficoLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-            .addGroup(GraficoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142))
+            .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         GraficoLayout.setVerticalGroup(
             GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GraficoLayout.createSequentialGroup()
-                .addGroup(GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GraficoLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GraficoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(GraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(503, 503, 503))
         );
 
         jTabbedPane1.addTab("Grafico", Grafico);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 530));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
-         //se lee el txt
-    if (iniciado==false){
-        iniciado=true;
-    JFileChooser file = new JFileChooser();
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(".TXT","txt");
-    file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    file.setFileFilter(filter);
-    int selection=file.showOpenDialog(this);
-    
-    if(selection==JFileChooser.APPROVE_OPTION) {
-        File archive=file.getSelectedFile(); 
-        String path=archive.getAbsolutePath();
-        setPath(path);
-    
-        if(!path.contains("txt")) {
-        JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo txt");
-        }
-        else {
-        try{
-            File archivo = new File (path);
-            FileReader fr = new FileReader(archivo); 
-            BufferedReader br = new BufferedReader(fr); 
-                 
-            String cadena;
-            String complete=""; 
-      
-            while ((cadena=br.readLine())!=null) { //lee hasta llegar a null que significa que se acabo el archivo
-
-                if(!cadena.isEmpty()&& !cadena.isBlank()) { //revisa que la linea no sea vacia/que el tamaño de la cadena sea 0
-                    complete+=cadena+"\n";
-                }
-            }
-                
-            fr.close();
-            br.close();
-            complete=complete.trim(); //quita linea en blanco al final
-            //el !"".equals es para verificar que el string no sea solo un espacio en blanco
-            if(!"".equals(complete)) {
-                String[] info;
-                String [] todo=complete.split(";");
-                String [] Dias=todo[0].split("\n");
-                int duracionDias=Integer.parseInt(Dias[1]);
-                if(duracionDias<=0) {
-                    throw new Exception("La duracion del dia no puede ser 0");
-                }
-                this.Cont_Day_Duration.setValue(duracionDias);
-                //System.out.println(duracionDias); //todo bien aqui
-                String[] Diasdead=todo[1].split("\n");
-                //System.out.println(Diasdead[1]);
-                int Deadline=Integer.parseInt(Diasdead[2]);
-                if(Deadline<=0) {
-                    throw new Exception("El tiempo de entrega no puede ser 0");
-                }
-                this.Cont_Deadline.setValue(Deadline);
-                getApple_Deadline_Counter().setText(Integer.toString(Deadline)); //5
-                getMSI_Deadline_Counter().setText(Integer.toString(Deadline));
-                
-                //ya tengo la duracion del dia y la deadline se crean/agregan las cosas
-                apple.setDayDuration(duracionDias); //3000 milseg, 3 seg
-                msi.setDayDuration(duracionDias);
-                apple.getCompanyStorehouse().setDeadLine(Deadline); //5 days
-                
-                
-                //apple.getCompanyStorehouse().setDaysRemaining(Deadline);
-                msi.getCompanyStorehouse().setDeadLine(Deadline);
-                
-                //msi.getCompanyStorehouse().setDaysRemaining(Deadline);
-                
-                //Conversion de hora y minutos   
-                int hourDuration = (dayDuration/24);
-                int minDuration = hourDuration/60;
-                
-                if(hourDuration == 0){
-                    hourDuration = 1;
-                }
-                if(minDuration == 0){
-                   minDuration = 1;
-                }
-               
-                
-                ProjectManager appleMan = new ProjectManager(40, this.dayDuration,this.apple.getMutex(),this.apple.getCompanyStorehouse());
-                Director appleDir = new Director(60,this.dayDuration,this.apple.getMutex(), this.apple.getCompanyStorehouse(),appleMan);
-                //DirectorWatch appleWatch = new DirectorWatch( this.dayDuration, hourDuration, minDuration, appleDir, Apple_Director_State, this.apple);
-
-        
-                ProjectManager MsiMan = new ProjectManager(40,this.dayDuration, this.msi.getMutex(),this.msi.getCompanyStorehouse());
-                Director MsiDir = new Director(60,this.dayDuration,this.apple.getMutex(), this.msi.getCompanyStorehouse(), MsiMan);
-                //DirectorWatch MsiWatch = new DirectorWatch(this.dayDuration, hourDuration, minDuration, MsiDir, MSI_Director_State,this.msi);
-                
-               //todo2 tiene cosas de cartoon
-                todo[2]=todo[2].trim();
-                String [] infocom1=todo[2].split("-");
-                //todo3 tiene cosas de nick
-                todo[3]=todo[3].trim();
-                String [] infocom2=todo[3].split("-");
-                
-                if (infocom1[0].compareTo("Cartoon")==0) { //el if es porsia 
-//                     System.out.println("jajajaj "+infocom1[0]);
-//                     System.out.println(infocom1[1]);
-                     infocom1[1]=infocom1[1].trim();
-                     String [] divTra=infocom1[1].split(":");
-                     divTra[1]=divTra[1].trim();
-                     String [] trabajadores=divTra[1].split("\n");
-                     
-                     for (int i = 0; i < trabajadores.length; i++) {
-                         //System.out.println(i+" "+trabajadores[i]);
-                         String [] cantidad=trabajadores[i].split(",");
-                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
-                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
-                         //System.out.println(cantidad[1]);
-                         if(Integer.parseInt(cantidad[1])>0) {
-                            msi.addWorker(i,Integer.parseInt(cantidad[1]));
-                         }else {
-                         throw new Exception("La cantidad de trabajadores no puede ser 0");
-                         }
-                         
-                     }
-                    if(msi.getMotherboardProducers().getlSize()+msi.getCPUProducers().getlSize()+msi.getRAMProducers().getlSize()+msi.getPowerSupProducers().getlSize()+msi.getGraphicCardProducers().getlSize()+msi.getAssemblers().getlSize()>20){
-                        throw new Exception("La cantidad de trabajadores no puede ser 0");
-                    }
-                    //MsiMan.start();
-                    //MsiDir.start();
-                    //MsiWatch.start();
-                    System.out.println("Listo msi");
-                    this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
-                    this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
-                    this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
-                    this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
-                    this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
-                    this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
-                 
-                 }
-                 else if (infocom1[0].compareTo("Nick")==0) {
-                     infocom1[1]=infocom1[1].trim();
-                     String [] divTra=infocom1[1].split(":");
-                     divTra[1]=divTra[1].trim();
-                     String [] trabajadores=divTra[1].split("\n");
-                     
-                     for (int i = 0; i < trabajadores.length; i++) {
-                         //System.out.println(i+" "+trabajadores[i]);
-                         String [] cantidad=trabajadores[i].split(",");
-                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
-                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
-                         //System.out.println(cantidad[1]);
-                         if(Integer.parseInt(cantidad[1])>0) {
-                            apple.addWorker(i,Integer.parseInt(cantidad[1]));
-                         } else {
-                         throw new Exception("La cantidad de trabajadores no puede ser 0");
-                         }
-                         
-                    }
-                    //appleMan.start();
-                    //appleDir.start();
-                    //appleWatch.start();
-                    this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
-                    this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
-                    this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
-                    this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
-                    this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
-                    this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
-                    
-                 }
-                 
-                 if (infocom2[0].compareTo("Cartoon")==0) {
-//                     System.out.println("jejejeje "+infocom2[0]);
-//                     System.out.println(infocom2[1]);
-                     infocom1[1]=infocom1[1].trim();
-                     String [] divTra=infocom1[1].split(":");
-                     divTra[1]=divTra[1].trim();
-                     String [] trabajadores=divTra[1].split("\n");
-                     
-                     for (int i = 0; i < trabajadores.length; i++) {
-                         //System.out.println(i+" "+trabajadores[i]);
-                         String [] cantidad=trabajadores[i].split(",");
-                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
-                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
-                         //System.out.println(cantidad[1]);
-                         if(Integer.parseInt(cantidad[1])>0) { 
-                          msi.addWorker(i,Integer.parseInt(cantidad[1]));
-                        }else {
-                         throw new Exception("La cantidad de trabajadores no puede ser 0");
-                         }
-                         
-                     }
-                     
-                    //MsiMan.start();
-                    //MsiDir.start();
-                    //MsiWatch.start();
-                    this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
-                    this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
-                    this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
-                    this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
-                    this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
-                    this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
-                 }
-                 else if (infocom2[0].compareTo("Nick")==0) {
-                     String [] divTra=infocom2[1].split(":");
-                     divTra[1]=divTra[1].trim();
-                     String [] trabajadores=divTra[1].split("\n");
-                     System.out.println(infocom2[0]);
-                     for (int i = 0; i < trabajadores.length; i++) {
-                         //System.out.println(i+" "+trabajadores[i]);
-                         String [] cantidad=trabajadores[i].split(",");
-                         //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
-                         //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
-                         //System.out.println(cantidad[1]);
-                         if(Integer.parseInt(cantidad[1])>0) {
-                            apple.addWorker(i,Integer.parseInt(cantidad[1]));
-                         }else {
-                         throw new Exception("La cantidad de trabajadores no puede ser 0");
-                         }
-                         
-                     }
-                     if(apple.getMotherboardProducers().getlSize()+apple.getCPUProducers().getlSize()+apple.getRAMProducers().getlSize()+apple.getPowerSupProducers().getlSize()+apple.getGraphicCardProducers().getlSize()+apple.getAssemblers().getlSize()>18){
-                        throw new Exception("La cantidad de trabajadores no puede ser 0");
-                    }
-                    //appleMan.start();
-                    //appleDir.start();
-                    //appleWatch.start();
-                    this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
-                    this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
-                    this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
-                    this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
-                    this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
-                    this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
-                    
-                      
-                      System.out.println("Listo nick");
-                 
-                 
-                 }
-                 
-                    appleMan.start();
-                    appleDir.start();
-                    //appleWatch.start();
-                    MsiMan.start();
-                    MsiDir.start();
-                    //MsiWatch.start();
-                
-            
-            }
-                
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erorr!!!! Asegurate de haber cargado el archivo correcto");
-            System.exit(0);
-            }
-        }      
-    GlobalUI.addMSI(0, 0);
-    GlobalUI.addApple(0, 0);
-    GlobalUI.addSeries(GlobalUI.getMSI());
-    GlobalUI.addSeries(GlobalUI.getApple());
-    
-    JFreeChart chart = ChartFactory.createXYLineChart("Utilidad vs Tiempo", "Utilidad (Millones $)", "Tiempo (Días)", GlobalUI.dataset, PlotOrientation.HORIZONTAL, false, true, false);
-      
-    final XYPlot plot = chart.getXYPlot( );
-        
-    ChartPanel barPanel = new ChartPanel(chart);
-    
-    XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-    renderer.setSeriesPaint( 0 , Color.RED );
-    renderer.setSeriesPaint( 1 , Color.BLUE);
-    renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
-    renderer.setSeriesStroke( 1 , new BasicStroke( 4.0f ) );
-    plot.setRenderer( renderer );
-    
-    panelChart.removeAll();
-    panelChart.add(barPanel);
-    panelChart.validate();
-    }else {
-        JOptionPane.showMessageDialog(null, "ERROR");
-        System.exit(0);
-    }
-    } else{
-        JOptionPane.showMessageDialog(null, "La simulacion ya ha iniciado");
-    }
-    }//GEN-LAST:event_IniciarSimulacionActionPerformed
-
-    private void Cont_Placas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_AppleStateChanged
+    private void Cont_Ensamblador_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_MSIStateChanged
         if(iniciado == true){
-            if((int)this.Cont_Placas_Apple.getValue() <= 0){
-                this.Cont_Placas_Apple.setValue(1);
+            if((int)this.Cont_Ensamblador_MSI.getValue() <= 0){
+                this.Cont_Ensamblador_MSI.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+            }
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_Placas_Apple.setValue((int)this.Cont_Placas_Apple.getValue() - 1);
+                this.Cont_Ensamblador_MSI.setValue((int)this.Cont_Ensamblador_MSI.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = apple.getMotherboardProducers().getlSize();
-                int cont2 = (int) Cont_Placas_Apple.getValue();
+                int cont = msi.getAssemblers().getlSize();
+                int cont2 = (int) Cont_Ensamblador_MSI.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker(0);
+                        msi.removeWorker(5);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        apple.addWorker(0,1);
+
+                        msi.addWorker(5,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_Placas_Apple.setValue(1);
+            this.Cont_Ensamblador_MSI.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_Placas_AppleStateChanged
+    }//GEN-LAST:event_Cont_Ensamblador_MSIStateChanged
 
-    private void Cont_CPU_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_AppleStateChanged
+    private void Cont_Tarjetas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_MSIStateChanged
+
+        if((int)this.Cont_Tarjetas_MSI.getValue() <= 0){
+            this.Cont_Tarjetas_MSI.setValue(1);
+            this.repaint();
+        }
+        else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+            JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+            this.Cont_Tarjetas_MSI.setValue((int)this.Cont_Tarjetas_MSI.getValue() - 1);
+            this.repaint();
+        }
+        else{
+            int cont = msi.getGraphicCardProducers().getlSize();
+            int cont2 = (int) Cont_Tarjetas_MSI.getValue();
+
+            if (cont > cont2){
+                while (cont > cont2){
+                    msi.removeWorker(4);
+                    cont --;
+                }
+            }else if (cont < cont2){
+
+                while (cont < cont2){
+
+                    msi.addWorker(4,1);
+                    cont ++;
+                }
+            }
+        }
+    }//GEN-LAST:event_Cont_Tarjetas_MSIStateChanged
+
+    private void Cont_FuenteA_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_MSIStateChanged
         if(iniciado == true){
-            if((int)this.Cont_CPU_Apple.getValue() <= 0){
-                this.Cont_CPU_Apple.setValue(1);
+            if((int)this.Cont_FuenteA_MSI.getValue() <= 0){
+                this.Cont_FuenteA_MSI.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+            }
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_CPU_Apple.setValue((int)this.Cont_CPU_Apple.getValue() - 1);
+                this.Cont_FuenteA_MSI.setValue((int)this.Cont_FuenteA_MSI.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = apple.getCPUProducers().getlSize();
-                int cont2 = (int) Cont_CPU_Apple.getValue();
+                int cont = msi.getPowerSupProducers().getlSize();
+                int cont2 = (int) Cont_FuenteA_MSI.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker(1);
+                        msi.removeWorker(3);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
- 
-                        apple.addWorker(1,1);
+
+                        msi.addWorker(3,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_CPU_Apple.setValue(1);
+            this.Cont_FuenteA_MSI.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_CPU_AppleStateChanged
+    }//GEN-LAST:event_Cont_FuenteA_MSIStateChanged
 
-    private void Cont_RAM_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_AppleStateChanged
+    private void Cont_RAM_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_MSIStateChanged
         if(iniciado == true){
-            if((int)this.Cont_RAM_Apple.getValue() <= 0){
-                this.Cont_RAM_Apple.setValue(1);
+            if((int)this.Cont_RAM_MSI.getValue() <= 0){
+                this.Cont_RAM_MSI.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+            }
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_RAM_Apple.setValue((int)this.Cont_RAM_Apple.getValue() - 1);
+                this.Cont_RAM_MSI.setValue((int)this.Cont_RAM_MSI.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = apple.getRAMProducers().getlSize();
-                int cont2 = (int) Cont_RAM_Apple.getValue();
+                int cont = msi.getRAMProducers().getlSize();
+                int cont2 = (int) Cont_RAM_MSI.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker(2);
+                        msi.removeWorker(2);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        apple.addWorker(2,1);
+
+                        msi.addWorker(2,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_RAM_Apple.setValue(1);
+            this.Cont_RAM_MSI.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_RAM_AppleStateChanged
+    }//GEN-LAST:event_Cont_RAM_MSIStateChanged
 
-    private void Cont_FuenteA_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_AppleStateChanged
+    private void Cont_CPU_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_MSIStateChanged
         if(iniciado == true){
-            if((int)this.Cont_FuenteA_Apple.getValue() <= 0){
-                this.Cont_FuenteA_Apple.setValue(1);
+            if((int)this.Cont_CPU_MSI.getValue() <= 0){
+                this.Cont_CPU_MSI.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+            }
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_FuenteA_Apple.setValue((int)this.Cont_FuenteA_Apple.getValue() - 1);
+                this.Cont_CPU_MSI.setValue((int)this.Cont_CPU_MSI.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = apple.getPowerSupProducers().getlSize();
-                int cont2 = (int) Cont_FuenteA_Apple.getValue();
+                int cont = msi.getCPUProducers().getlSize();
+                int cont2 = (int) Cont_CPU_MSI.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker(3);
+                        msi.removeWorker(1);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        apple.addWorker(3,1);
+
+                        msi.addWorker(1,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_FuenteA_Apple.setValue(1);
+            this.Cont_CPU_MSI.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_FuenteA_AppleStateChanged
+    }//GEN-LAST:event_Cont_CPU_MSIStateChanged
 
-    private void Cont_Tarjetas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_AppleStateChanged
+    private void Cont_Placas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_MSIStateChanged
         if(iniciado == true){
-            if((int)this.Cont_Tarjetas_Apple.getValue() <= 0){
-                this.Cont_Tarjetas_Apple.setValue(1);
+            if((int)this.Cont_Placas_MSI.getValue() <= 0){
+                this.Cont_Placas_MSI.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+            }
+            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_Tarjetas_Apple.setValue((int)this.Cont_Tarjetas_Apple.getValue() - 1);
+                this.Cont_Placas_MSI.setValue((int)this.Cont_Placas_MSI.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = apple.getGraphicCardProducers().getlSize();
-                int cont2 = (int) Cont_Tarjetas_Apple.getValue();
+                int cont = msi.getMotherboardProducers().getlSize();
+                int cont2 = (int) Cont_Placas_MSI.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        apple.removeWorker(4);
+                        msi.removeWorker(0);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                       
-                        apple.addWorker(4,1);
+
+                        msi.addWorker(0,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_Tarjetas_Apple.setValue(1);
+            this.Cont_Placas_MSI.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_Tarjetas_AppleStateChanged
+    }//GEN-LAST:event_Cont_Placas_MSIStateChanged
 
     private void Cont_Ensamblador_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_AppleStateChanged
         if(iniciado == true){
             if((int)this.Cont_Ensamblador_Apple.getValue() <= 0){
                 this.Cont_Ensamblador_Apple.setValue(1);
                 this.repaint();
-            }        
+            }
             else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
                 this.Cont_Ensamblador_Apple.setValue((int)this.Cont_Ensamblador_Apple.getValue() - 1);
@@ -2358,217 +2087,458 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Cont_Ensamblador_AppleStateChanged
 
-    private void Cont_Placas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_MSIStateChanged
+    private void Cont_Tarjetas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_AppleStateChanged
         if(iniciado == true){
-            if((int)this.Cont_Placas_MSI.getValue() <= 0){
-                this.Cont_Placas_MSI.setValue(1);
+            if((int)this.Cont_Tarjetas_Apple.getValue() <= 0){
+                this.Cont_Tarjetas_Apple.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+            }
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_Placas_MSI.setValue((int)this.Cont_Placas_MSI.getValue() - 1);
+                this.Cont_Tarjetas_Apple.setValue((int)this.Cont_Tarjetas_Apple.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = msi.getMotherboardProducers().getlSize();
-                int cont2 = (int) Cont_Placas_MSI.getValue();
+                int cont = apple.getGraphicCardProducers().getlSize();
+                int cont2 = (int) Cont_Tarjetas_Apple.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker(0);
+                        apple.removeWorker(4);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        msi.addWorker(0,1);
+
+                        apple.addWorker(4,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_Placas_MSI.setValue(1);
+            this.Cont_Tarjetas_Apple.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_Placas_MSIStateChanged
+    }//GEN-LAST:event_Cont_Tarjetas_AppleStateChanged
 
-    private void Cont_CPU_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_MSIStateChanged
-       if(iniciado == true){
-            if((int)this.Cont_CPU_MSI.getValue() <= 0){
-                this.Cont_CPU_MSI.setValue(1);
-                this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
-                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_CPU_MSI.setValue((int)this.Cont_CPU_MSI.getValue() - 1);
-                this.repaint();
-            }
-            else{
-                int cont = msi.getCPUProducers().getlSize();
-                int cont2 = (int) Cont_CPU_MSI.getValue();
-
-                if (cont > cont2){
-                    while (cont > cont2){
-                        msi.removeWorker(1);
-                        cont --;
-                    }
-                }else if (cont < cont2){
-
-                    while (cont < cont2){
-                        
-                        msi.addWorker(1,1);
-                        cont ++;
-                    }
-                }
-            }
-        }else{
-            this.Cont_CPU_MSI.setValue(1);
-            this.repaint();
-        }
-    }//GEN-LAST:event_Cont_CPU_MSIStateChanged
-
-    private void Cont_RAM_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_MSIStateChanged
+    private void Cont_FuenteA_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_AppleStateChanged
         if(iniciado == true){
-            if((int)this.Cont_RAM_MSI.getValue() <= 0){
-                this.Cont_RAM_MSI.setValue(1);
+            if((int)this.Cont_FuenteA_Apple.getValue() <= 0){
+                this.Cont_FuenteA_Apple.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+            }
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_RAM_MSI.setValue((int)this.Cont_RAM_MSI.getValue() - 1);
+                this.Cont_FuenteA_Apple.setValue((int)this.Cont_FuenteA_Apple.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = msi.getRAMProducers().getlSize();
-                int cont2 = (int) Cont_RAM_MSI.getValue();
+                int cont = apple.getPowerSupProducers().getlSize();
+                int cont2 = (int) Cont_FuenteA_Apple.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker(2);
+                        apple.removeWorker(3);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        
-                        msi.addWorker(2,1);
+
+                        apple.addWorker(3,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_RAM_MSI.setValue(1);
+            this.Cont_FuenteA_Apple.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_RAM_MSIStateChanged
+    }//GEN-LAST:event_Cont_FuenteA_AppleStateChanged
 
-    private void Cont_FuenteA_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_FuenteA_MSIStateChanged
+    private void Cont_RAM_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_RAM_AppleStateChanged
         if(iniciado == true){
-            if((int)this.Cont_FuenteA_MSI.getValue() <= 0){
-                this.Cont_FuenteA_MSI.setValue(1);
+            if((int)this.Cont_RAM_Apple.getValue() <= 0){
+                this.Cont_RAM_Apple.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+            }
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_FuenteA_MSI.setValue((int)this.Cont_FuenteA_MSI.getValue() - 1);
+                this.Cont_RAM_Apple.setValue((int)this.Cont_RAM_Apple.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = msi.getPowerSupProducers().getlSize();
-                int cont2 = (int) Cont_FuenteA_MSI.getValue();
+                int cont = apple.getRAMProducers().getlSize();
+                int cont2 = (int) Cont_RAM_Apple.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker(3);
+                        apple.removeWorker(2);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        
-                        msi.addWorker(3,1);
+
+                        apple.addWorker(2,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_FuenteA_MSI.setValue(1);
+            this.Cont_RAM_Apple.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_FuenteA_MSIStateChanged
+    }//GEN-LAST:event_Cont_RAM_AppleStateChanged
 
-    private void Cont_Tarjetas_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Tarjetas_MSIStateChanged
-        
-            if((int)this.Cont_Tarjetas_MSI.getValue() <= 0){
-                this.Cont_Tarjetas_MSI.setValue(1);
-                this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
-                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_Tarjetas_MSI.setValue((int)this.Cont_Tarjetas_MSI.getValue() - 1);
-                this.repaint();
-            }
-            else{
-                int cont = msi.getGraphicCardProducers().getlSize();
-                int cont2 = (int) Cont_Tarjetas_MSI.getValue();
-
-                if (cont > cont2){
-                    while (cont > cont2){
-                        msi.removeWorker(4);
-                        cont --;
-                    }
-                }else if (cont < cont2){
-                    
-                    while (cont < cont2){
-                        
-                        msi.addWorker(4,1);
-                        cont ++;
-                    }
-                }
-            }
-        
-    }//GEN-LAST:event_Cont_Tarjetas_MSIStateChanged
-
-    private void Cont_Ensamblador_MSIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Ensamblador_MSIStateChanged
+    private void Cont_CPU_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_CPU_AppleStateChanged
         if(iniciado == true){
-            if((int)this.Cont_Ensamblador_MSI.getValue() <= 0){
-                this.Cont_Ensamblador_MSI.setValue(1);
+            if((int)this.Cont_CPU_Apple.getValue() <= 0){
+                this.Cont_CPU_Apple.setValue(1);
                 this.repaint();
-            }        
-            else if((int)this.Cont_Placas_MSI.getValue() + (int)this.Cont_CPU_MSI.getValue() + (int)this.Cont_RAM_MSI.getValue() + (int)this.Cont_FuenteA_MSI.getValue() + (int)this.Cont_Ensamblador_MSI.getValue() + (int)this.Cont_Tarjetas_MSI.getValue() > max_msi){
+            }
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
                 JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
-                this.Cont_Ensamblador_MSI.setValue((int)this.Cont_Ensamblador_MSI.getValue() - 1);
+                this.Cont_CPU_Apple.setValue((int)this.Cont_CPU_Apple.getValue() - 1);
                 this.repaint();
             }
             else{
-                int cont = msi.getAssemblers().getlSize();
-                int cont2 = (int) Cont_Ensamblador_MSI.getValue();
+                int cont = apple.getCPUProducers().getlSize();
+                int cont2 = (int) Cont_CPU_Apple.getValue();
 
                 if (cont > cont2){
                     while (cont > cont2){
-                        msi.removeWorker(5);
+                        apple.removeWorker(1);
                         cont --;
                     }
                 }else if (cont < cont2){
 
                     while (cont < cont2){
-                        
-                        msi.addWorker(5,1);
+
+                        apple.addWorker(1,1);
                         cont ++;
                     }
                 }
             }
         }else{
-            this.Cont_Ensamblador_MSI.setValue(1);
+            this.Cont_CPU_Apple.setValue(1);
             this.repaint();
         }
-    }//GEN-LAST:event_Cont_Ensamblador_MSIStateChanged
+    }//GEN-LAST:event_Cont_CPU_AppleStateChanged
+
+    private void Cont_Placas_AppleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Placas_AppleStateChanged
+        if(iniciado == true){
+            if((int)this.Cont_Placas_Apple.getValue() <= 0){
+                this.Cont_Placas_Apple.setValue(1);
+                this.repaint();
+            }
+            else if((int)this.Cont_Placas_Apple.getValue() + (int)this.Cont_CPU_Apple.getValue() + (int)this.Cont_RAM_Apple.getValue() + (int)this.Cont_FuenteA_Apple.getValue() + (int)this.Cont_Ensamblador_Apple.getValue() + (int)this.Cont_Tarjetas_Apple.getValue() > max_apple){
+                JOptionPane.showMessageDialog(null,"Número máximo de Empleados Alcanzado!");
+                this.Cont_Placas_Apple.setValue((int)this.Cont_Placas_Apple.getValue() - 1);
+                this.repaint();
+            }
+            else{
+                int cont = apple.getMotherboardProducers().getlSize();
+                int cont2 = (int) Cont_Placas_Apple.getValue();
+
+                if (cont > cont2){
+                    while (cont > cont2){
+                        apple.removeWorker(0);
+                        cont --;
+                    }
+                }else if (cont < cont2){
+
+                    while (cont < cont2){
+
+                        apple.addWorker(0,1);
+                        cont ++;
+                    }
+                }
+            }
+        }else{
+            this.Cont_Placas_Apple.setValue(1);
+            this.repaint();
+        }
+    }//GEN-LAST:event_Cont_Placas_AppleStateChanged
+
+    private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
+        //se lee el txt
+        if (iniciado==false){
+            iniciado=true;
+            JFileChooser file = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(".TXT","txt");
+            file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            file.setFileFilter(filter);
+            int selection=file.showOpenDialog(this);
+
+            if(selection==JFileChooser.APPROVE_OPTION) {
+                File archive=file.getSelectedFile();
+                String path=archive.getAbsolutePath();
+                setPath(path);
+
+                if(!path.contains("txt")) {
+                    JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo txt");
+                }
+                else {
+                    try{
+                        File archivo = new File (path);
+                        FileReader fr = new FileReader(archivo);
+                        BufferedReader br = new BufferedReader(fr);
+
+                        String cadena;
+                        String complete="";
+
+                        while ((cadena=br.readLine())!=null) { //lee hasta llegar a null que significa que se acabo el archivo
+
+                            if(!cadena.isEmpty()&& !cadena.isBlank()) { //revisa que la linea no sea vacia/que el tamaño de la cadena sea 0
+                                complete+=cadena+"\n";
+                            }
+                        }
+
+                        fr.close();
+                        br.close();
+                        complete=complete.trim(); //quita linea en blanco al final
+                        //el !"".equals es para verificar que el string no sea solo un espacio en blanco
+                        if(!"".equals(complete)) {
+                            String[] info;
+                            String [] todo=complete.split(";");
+                            String [] Dias=todo[0].split("\n");
+                            int duracionDias=Integer.parseInt(Dias[1]);
+                            if(duracionDias<=0) {
+                                throw new Exception("La duracion del dia no puede ser 0");
+                            }
+                            this.Cont_Day_Duration.setValue(duracionDias);
+                            //System.out.println(duracionDias); //todo bien aqui
+                            String[] Diasdead=todo[1].split("\n");
+                            //System.out.println(Diasdead[1]);
+                            int Deadline=Integer.parseInt(Diasdead[2]);
+                            if(Deadline<=0) {
+                                throw new Exception("El tiempo de entrega no puede ser 0");
+                            }
+                            this.Cont_Deadline.setValue(Deadline);
+                            getApple_Deadline_Counter().setText(Integer.toString(Deadline)); //5
+                            getMSI_Deadline_Counter().setText(Integer.toString(Deadline));
+
+                            //ya tengo la duracion del dia y la deadline se crean/agregan las cosas
+                            apple.setDayDuration(duracionDias); //3000 milseg, 3 seg
+                            msi.setDayDuration(duracionDias);
+
+                            apple.getCompanyStorehouse().setDeadLine(Deadline); //5 days
+                            apple.getCompanyStorehouse().setDaysRemaining(Deadline);
+
+                            msi.getCompanyStorehouse().setDeadLine(Deadline);
+                            msi.getCompanyStorehouse().setDaysRemaining(Deadline);
+
+                            //Conversion de hora y minutos
+                            int hourDuration = (dayDuration/24);
+                            int minDuration = hourDuration/60;
+
+                            if(hourDuration == 0){
+                                hourDuration = 1;
+                            }
+                            if(minDuration == 0){
+                                minDuration = 1;
+                            }
+
+                            ProjectManager appleMan = new ProjectManager(40, duracionDias,this.apple.getMutex(),this.apple.getCompanyStorehouse());
+                            Director appleDir = new Director(60,duracionDias,this.apple.getMutex(), this.apple.getCompanyStorehouse(),appleMan);
+                            //DirectorWatch appleWatch = new DirectorWatch( this.dayDuration, hourDuration, minDuration, appleDir, Apple_Director_State, this.apple);
+
+                            ProjectManager MsiMan = new ProjectManager(40,duracionDias, this.msi.getMutex(),this.msi.getCompanyStorehouse());
+                            Director MsiDir = new Director(60,duracionDias,this.apple.getMutex(), this.msi.getCompanyStorehouse(), MsiMan);
+                            //DirectorWatch MsiWatch = new DirectorWatch(this.dayDuration, hourDuration, minDuration, MsiDir, MSI_Director_State,this.msi);
+
+                            //todo2 tiene cosas de cartoon
+                            todo[2]=todo[2].trim();
+                            String [] infocom1=todo[2].split("-");
+                            //todo3 tiene cosas de nick
+                            todo[3]=todo[3].trim();
+                            String [] infocom2=todo[3].split("-");
+
+                            if (infocom1[0].compareTo("Cartoon")==0) { //el if es porsia
+                                //                     System.out.println("jajajaj "+infocom1[0]);
+                                //                     System.out.println(infocom1[1]);
+                                infocom1[1]=infocom1[1].trim();
+                                String [] divTra=infocom1[1].split(":");
+                                divTra[1]=divTra[1].trim();
+                                String [] trabajadores=divTra[1].split("\n");
+
+                                for (int i = 0; i < trabajadores.length; i++) {
+                                    //System.out.println(i+" "+trabajadores[i]);
+                                    String [] cantidad=trabajadores[i].split(",");
+                                    //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                                    //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                                    //System.out.println(cantidad[1]);
+                                    if(Integer.parseInt(cantidad[1])>0) {
+                                        msi.addWorker(i,Integer.parseInt(cantidad[1]));
+                                    }else {
+                                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                    }
+
+                                }
+                                if(msi.getMotherboardProducers().getlSize()+msi.getCPUProducers().getlSize()+msi.getRAMProducers().getlSize()+msi.getPowerSupProducers().getlSize()+msi.getGraphicCardProducers().getlSize()+msi.getAssemblers().getlSize()>20){
+                                    throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                }
+                                //MsiMan.start();
+                                //MsiDir.start();
+                                //MsiWatch.start();
+                                System.out.println("Listo msi");
+                                this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
+                                this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
+                                this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
+                                this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
+                                this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
+                                this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
+
+                            }
+                            else if (infocom1[0].compareTo("Nick")==0) {
+                                infocom1[1]=infocom1[1].trim();
+                                String [] divTra=infocom1[1].split(":");
+                                divTra[1]=divTra[1].trim();
+                                String [] trabajadores=divTra[1].split("\n");
+
+                                for (int i = 0; i < trabajadores.length; i++) {
+                                    //System.out.println(i+" "+trabajadores[i]);
+                                    String [] cantidad=trabajadores[i].split(",");
+                                    //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                                    //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                                    //System.out.println(cantidad[1]);
+                                    if(Integer.parseInt(cantidad[1])>0) {
+                                        apple.addWorker(i,Integer.parseInt(cantidad[1]));
+                                    } else {
+                                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                    }
+
+                                }
+                                //appleMan.start();
+                                //appleDir.start();
+                                //appleWatch.start();
+                                this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
+                                this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
+                                this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
+                                this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
+                                this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
+                                this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
+
+                            }
+
+                            if (infocom2[0].compareTo("Cartoon")==0) {
+                                //                     System.out.println("jejejeje "+infocom2[0]);
+                                //                     System.out.println(infocom2[1]);
+                                infocom1[1]=infocom1[1].trim();
+                                String [] divTra=infocom1[1].split(":");
+                                divTra[1]=divTra[1].trim();
+                                String [] trabajadores=divTra[1].split("\n");
+
+                                for (int i = 0; i < trabajadores.length; i++) {
+                                    //System.out.println(i+" "+trabajadores[i]);
+                                    String [] cantidad=trabajadores[i].split(",");
+                                    //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                                    //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                                    //System.out.println(cantidad[1]);
+                                    if(Integer.parseInt(cantidad[1])>0) {
+                                        msi.addWorker(i,Integer.parseInt(cantidad[1]));
+                                    }else {
+                                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                    }
+
+                                }
+
+                                //MsiMan.start();
+                                //MsiDir.start();
+                                //MsiWatch.start();
+                                this.Cont_Placas_MSI.setValue(msi.getMotherboardProducers().getlSize());
+                                this.Cont_CPU_MSI.setValue(msi.getCPUProducers().getlSize());
+                                this.Cont_RAM_MSI.setValue(msi.getRAMProducers().getlSize());
+                                this.Cont_FuenteA_MSI.setValue(msi.getPowerSupProducers().getlSize());
+                                this.Cont_Tarjetas_MSI.setValue(msi.getGraphicCardProducers().getlSize());
+                                this.Cont_Ensamblador_MSI.setValue(msi.getAssemblers().getlSize());
+                            }
+                            else if (infocom2[0].compareTo("Nick")==0) {
+                                String [] divTra=infocom2[1].split(":");
+                                divTra[1]=divTra[1].trim();
+                                String [] trabajadores=divTra[1].split("\n");
+                                System.out.println(infocom2[0]);
+                                for (int i = 0; i < trabajadores.length; i++) {
+                                    //System.out.println(i+" "+trabajadores[i]);
+                                    String [] cantidad=trabajadores[i].split(",");
+                                    //cantidad[0] debe tener el nombre del trabajador y el [1] la cantidad de ese tipo
+                                    //cuando se vaya a crear el dev le paso i que seria el tipo y cantidad[1] que seria la cantidad
+                                    //System.out.println(cantidad[1]);
+                                    if(Integer.parseInt(cantidad[1])>0) {
+                                        apple.addWorker(i,Integer.parseInt(cantidad[1]));
+                                    }else {
+                                        throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                    }
+
+                                }
+                                if(apple.getMotherboardProducers().getlSize()+apple.getCPUProducers().getlSize()+apple.getRAMProducers().getlSize()+apple.getPowerSupProducers().getlSize()+apple.getGraphicCardProducers().getlSize()+apple.getAssemblers().getlSize()>18){
+                                    throw new Exception("La cantidad de trabajadores no puede ser 0");
+                                }
+                                //appleMan.start();
+                                //appleDir.start();
+                                //appleWatch.start();
+                                this.Cont_Placas_Apple.setValue(apple.getMotherboardProducers().getlSize());
+                                this.Cont_CPU_Apple.setValue(apple.getCPUProducers().getlSize());
+                                this.Cont_RAM_Apple.setValue(apple.getRAMProducers().getlSize());
+                                this.Cont_FuenteA_Apple.setValue(apple.getPowerSupProducers().getlSize());
+                                this.Cont_Tarjetas_Apple.setValue(apple.getGraphicCardProducers().getlSize());
+                                this.Cont_Ensamblador_Apple.setValue(apple.getAssemblers().getlSize());
+
+                                System.out.println("Listo Apple");
+
+                            }
+
+                            appleMan.start();
+                            appleDir.start();
+                            //appleWatch.start();
+                            MsiMan.start();
+                            MsiDir.start();
+                            //MsiWatch.start();
+
+                        }
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erorr!!!! Asegurate de haber cargado el archivo correcto");
+                        System.exit(0);
+                    }
+                }
+
+                GlobalUI.addMSI(0, 0);
+                GlobalUI.addApple(0, 0);
+                GlobalUI.addSeries(GlobalUI.getMSI());
+                GlobalUI.addSeries(GlobalUI.getApple());
+
+                JFreeChart chart = ChartFactory.createXYLineChart("Utilidad vs Tiempo", "Utilidad (Millones $)", "Tiempo (Días)", GlobalUI.dataset, PlotOrientation.HORIZONTAL, false, true, false);
+
+                final XYPlot plot = chart.getXYPlot( );
+
+                ChartPanel barPanel = new ChartPanel(chart);
+
+                XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+                renderer.setSeriesPaint( 0 , Color.RED );
+                renderer.setSeriesPaint( 1 , Color.BLUE);
+                renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+                renderer.setSeriesStroke( 1 , new BasicStroke( 4.0f ) );
+                plot.setRenderer( renderer );
+
+                panelChart.removeAll();
+                panelChart.add(barPanel);
+                panelChart.validate();
+
+            }else {
+                JOptionPane.showMessageDialog(null, "ERROR");
+                System.exit(0);
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "La simulacion ya ha iniciado");
+        }
+
+    }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
     private void Cont_Day_DurationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Cont_Day_DurationStateChanged
-       if(iniciado == true){
+        if(iniciado == true){
             if((int)this.Cont_Day_Duration.getValue() <= 0){
                 this.Cont_Day_Duration.setValue(1);
                 this.repaint();
@@ -2577,9 +2547,6 @@ public class Dashboard extends javax.swing.JFrame {
             this.Cont_Day_Duration.setValue(1);
             this.repaint();
         }
-       
- 
-    
 
     }//GEN-LAST:event_Cont_Day_DurationStateChanged
 
@@ -2632,6 +2599,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Almacen_Tarjetas_Apple;
     private javax.swing.JLabel Almacen_Tarjetas_MSI;
     private javax.swing.JPanel Apple;
+    private javax.swing.JLabel AppleIcon;
     private javax.swing.JLabel Apple_Cont_ConTarjeta;
     private javax.swing.JLabel Apple_Cont_SinTarjeta;
     private static javax.swing.JLabel Apple_Deadline_Counter;
@@ -2645,8 +2613,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSpinner Cont_CPU_Apple;
     private javax.swing.JSpinner Cont_CPU_MSI;
     private javax.swing.JSpinner Cont_Day_Duration;
-    private static javax.swing.JLabel Cont_Days_Apple;
-    private static javax.swing.JLabel Cont_Days_MSI;
     private javax.swing.JSpinner Cont_Deadline;
     private javax.swing.JSpinner Cont_Ensamblador_Apple;
     private javax.swing.JSpinner Cont_Ensamblador_MSI;
@@ -2661,6 +2627,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Cont_Trabajadores_Apple;
     private javax.swing.JLabel Cont_Trabajadores_MSI;
     private javax.swing.JPanel Grafico;
+    private javax.swing.JLabel IconMSI;
     private javax.swing.JButton IniciarSimulacion;
     private javax.swing.JPanel Inicio;
     private javax.swing.JLabel LogoApple;
@@ -2678,17 +2645,16 @@ public class Dashboard extends javax.swing.JFrame {
     private static javax.swing.JLabel MSI_Utility_Counter;
     private javax.swing.JButton SaveButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -2714,7 +2680,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
@@ -2757,6 +2722,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2764,7 +2731,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panelChart;
     // End of variables declaration//GEN-END:variables

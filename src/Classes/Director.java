@@ -126,23 +126,20 @@ public class Director extends Thread {
                     this.storehouse.setDaysRemaining(this.storehouse.getDeadLine());//Reinicia los días requeridos
                     Dashboard.getApple_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
                     Dashboard.getMSI_Deadline_Counter().setText(Integer.toString(this.storehouse.getDaysRemaining()));
-                    //Aquí va una función para calcular la ganancia, en donde se agarran los caps y se multiplica y se añade a estudio, pero esa conexión no está hecha todavía
-                    
+                   
                     if(this.storehouse.getStandardComputers() <= 0 && this.storehouse.getGraphicCardComputers() <= 0){
                         System.out.println("NO SE ENTREGO NINGUNA COMPUTADORA");
                     }else{
                         if(this.storehouse.getStandardComputers() > 0){
                         this.storehouse.calcularGananciaS(this.storehouse.getStandardComputers());
                         this.storehouse.setStandardComputers(0);
-                        //Ventana.getNk_Cont_Caps().setText(Integer.toString(this.storehouse.getStandardComputers()));
-                        //Ventana.getCn_Cont_Caps().setText(Integer.toString(this.storehouse.getStandardComputers()));
+                      
                         
                     }
                         if(this.storehouse.getGraphicCardComputers() > 0){
                             this.storehouse.calcularGananciaGC(this.storehouse.getStandardComputers());
                             this.storehouse.setGraphicCardComputers(0);
-                            //Ventana.getNk_Cont_PW().setText(Integer.toString(this.storehouse.getGraphicCardComputers()));
-                            //Ventana.getCn_Cont_PW().setText(Integer.toString(this.storehouse.getGraphicCardComputers()));
+                          
                         }
                     }                 
                                         
@@ -153,14 +150,13 @@ public class Director extends Thread {
                 }                
             }else if(this.storehouse.getDaysRemaining()>0) {
                
-                //Acá abajo está todo el código de el director cuando NO esta entregando caps
+                //Acá abajo está todo el código de el director cuando NO esta entregando computadoras
                 Random random = new Random();
                 while((this.horaAleatoria=random.nextInt(24))==0) {
                     this.horaAleatoria=random.nextInt(24);
                 }
                 //horaAleatoria = 16;
-                //System.out.println("Diasss "+this.drive.getDiasEntrega()+" "+this.drive.getEstudio());
-                //System.out.println("HORA ALEATORIA: "+ this.horaAleatoria+ " "+this.drive.getEstudio());
+              
                 //Aquí van a pasar las 24 horas
                 for(int i = 1; i <= 24; i++){
                     try{                        
@@ -230,11 +226,11 @@ public class Director extends Thread {
     
     public void changeFailText(){
         if(this.storehouse.getCompany().compareTo("Apple") == 0){
-//            System.out.println("Atrapado el de Nickelodeon!");
+//            System.out.println("Atrapado el de Apple");
             Dashboard.getApple_Fail_Counter().setText(Integer.toString(this.getProjectManager().getFaltas()));
             Dashboard.getApple_Discount_Counter().setText(Integer.toString(this.getProjectManager().getDineroDescontado()) +"$");
         }else{
-//            System.out.println("Atrapado el de Cartoon Network!");
+//            System.out.println("Atrapado el de MSI!");
             Dashboard.getMSI_Fail_Counter().setText(Integer.toString(this.getProjectManager().getFaltas()));
             Dashboard.getMSI_Discount_Counter().setText(Integer.toString(this.getProjectManager().getDineroDescontado()) +"$");
         }     
